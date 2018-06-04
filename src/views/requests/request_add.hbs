@@ -1,0 +1,133 @@
+<div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="x_panel">
+
+<div class="x_content">
+    <br>
+    <form id="demo-form2" data-parsley-validate="" class="form-horizontal form-label-left" novalidate="">
+
+        <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">نوع درخواست
+                <span class="required">*</span>
+            </label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <select id="last-name" name="last-name" required="required" class="form-control col-md-7 col-xs-12" type="text">
+                    <option>فروش آسانسور</option>
+                    <option>عقد قرارداد سرویس ماهیانه</option>
+                    <option>درخواست تعمیر</option>
+                    <option>درخواست استاندارد</option>
+                    <option>درخواست استاندارد</option>
+                    <option>درخواست مشاوره و نظرات</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">شماره همراه فرد یا شماره قرارداد
+                <span class="required">*</span>
+            </label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <input id="first-name" required="required" class="form-control col-md-7 col-xs-12" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">نام و نام خانوادگی درخواست دهنده
+                <span class="required">*</span>
+            </label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <input id="first-name" required="required" class="form-control col-md-7 col-xs-12" type="text">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">
+            </label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+            </div>
+        </div>
+        <div/>
+        <div class="form-group">
+
+                    <div class="x_title">
+                        <h2>مشخصات محل</h2>
+
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">انتخاب آدرس
+                            <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <select id="last-name" name="last-name" required="required" class="form-control col-md-7 col-xs-12" type="text">
+                                <option>مشهد-صیاد شیرازی ۲ سرو ۱۰ پلاک ۵۱</option>
+                                <option>سایر</option>
+                            </select>
+                        </div>
+                    </div>
+                        <div class="form-group col-md-3 col-sm-3 ">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">شهر <span class="required">*</span>
+                            </label>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text">
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-3 col-sm-3 ">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">منطقه <span class="required">*</span>
+                            </label>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <input id="oneprice" class="oneprice date-picker form-control col-md-7 col-xs-12" required="required" type="text">
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-6 col-sm-6 ">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">جزئیات آدرس<span class="required">*</span>
+                            </label>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <input id="quantity" class="quantity date-picker form-control col-md-7 col-xs-12" required="required" type="text">
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-12 col-sm-12 ">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">توضیحات <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <textarea id="birthday" class="date-picker form-control col-md-7 col-xs-12"  type="text"></textarea>
+                            </div>
+                        </div>
+
+            <div class="form-group col-md-4 col-sm-4 ">
+                <label class="col-md-3 col-sm-3 col-xs-12 control-label">تخصیص تکنسین
+                    <br>
+                </label>
+
+                <div class="col-md-9 col-sm-9 col-xs-12">
+                    <div class="radio">
+                        <label>
+                            <input type="radio" class="flat"  name="iCheck"
+                                   checked="checked">خودکار
+                        </label>
+                        <label>
+                            <input type="radio" class="flat maliat" onclick="calculate()" id="maliat"  name="iCheck"
+                            > دستی
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group col-md-4 col-sm-4 ">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12">تکنسین <span class="required">*</span>
+                </label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input id="quantity" class="quantity date-picker form-control col-md-7 col-xs-12" required="required" type="text">
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                <button type="submit" class="add_field_button btn btn-primary">افزودن ردیف</button>
+                <button type="submit" class="btn btn-primary">انصراف</button>
+                <button type="submit" class="btn btn-success">ثبت</button>
+            </div>
+        </div>
+    </form>
+</div>
+</div>
+</div>

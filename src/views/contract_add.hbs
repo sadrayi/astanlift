@@ -1,0 +1,599 @@
+<div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="x_panel">
+<div class="row">
+
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+
+            <div class="x_content">
+
+
+                <h2>ثبت قرارداد</h2>
+                <!-- Tabs -->
+                <div id="wizard_verticle" class="form_wizard wizard_verticle">
+                    <ul class="list-unstyled wizard_steps">
+                        <li>
+                            <a href="#step-11">
+                                <span class="step_no">1</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#step-22">
+                                <span class="step_no">2</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#step-33">
+                                <span class="step_no">3</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#step-44">
+                                <span class="step_no">4</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#step-55">
+                                <span class="step_no">5</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#step-66">
+                                <span class="step_no">6</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#step-77">
+                                <span class="step_no">7</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#step-88">
+                                <span class="step_no">8</span>
+                            </a>
+                        </li>
+                    </ul>
+
+                    <div id="step-11">
+                        <form class="form-horizontal form-label-left">
+
+                            <span class="section">مشخصات قرارداد</span>
+
+                            <div class="form-group col-md-6 col-sm-6">
+                                <label class="control-label col-md-3 col-sm-3" for="first-name" disabled="disabled">شماره قرارداد <span
+                                        class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6">
+                                    <input type="text" id="first-name2" required="required"           {{#if activePage.contract_view}} disabled {{/if}}
+                                           class="form-control col-md-7 col-xs-12">
+                                </div>
+
+                            </div>
+                            <div class="form-group col-md-6 col-sm-6">
+                                <label class="control-label col-md-3 col-sm-3" for="last-name">تاریخ قرارداد  <span
+                                        class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6">
+                                    <input id="birthday2" class="date-picker form-control col-md-7 col-xs-12" {{#if activePage.contract_view}} disabled {{/if}}
+                                           class="form-control col-md-7 col-xs-12">
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6 col-sm-6">
+                                <label for="middle-name" class="control-label col-md-3 col-sm-3">نام و نام خانوادگی کارفرما</label>
+                                <div class="col-md-6 col-sm-6">
+                                    <input id="middle-name2" class="form-control col-md-7 col-xs-12" type="text" {{#if activePage.contract_view}} disabled {{/if}}
+                                           name="middle-name">
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6 col-sm-6">
+                                <label for="middle-name" class="control-label col-md-3 col-sm-3">نام پروژه</label>
+                                <div class="col-md-6 col-sm-6">
+                                    <input id="middle-name2" class="form-control col-md-7 col-xs-12" type="text" {{#if activePage.contract_view}} disabled {{/if}}
+                                           name="middle-name">
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6 col-sm-6">
+                                <label for="middle-name" class="control-label col-md-3 col-sm-3">کدملی (شناسه ملی)</label>
+                                <div class="col-md-6 col-sm-6">
+                                    <input id="middle-name2" class="form-control col-md-7 col-xs-12" type="text" {{#if activePage.contract_view}} disabled {{/if}}
+                                           name="middle-name">
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6 col-sm-6">
+                                <label for="middle-name" class="control-label col-md-3 col-sm-3">شماره شناسنامه</label>
+                                <div class="col-md-6 col-sm-6">
+                                    <input id="middle-name2" class="form-control col-md-7 col-xs-12" type="text" {{#if activePage.contract_view}} disabled {{/if}}
+                                           name="middle-name">
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6 col-sm-6">
+                                <label for="middle-name" class="control-label col-md-3 col-sm-3">نام پدر </label>
+                                <div class="col-md-6 col-sm-6">
+                                    <input id="middle-name2" class="form-control col-md-7 col-xs-12" type="text" {{#if activePage.contract_view}} disabled {{/if}}
+                                           name="middle-name">
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6 col-sm-6">
+                                <label for="middle-name" class="control-label col-md-3 col-sm-3">تاریخ تولد</label>
+                                <div class="col-md-6 col-sm-6">
+                                    <input id="birthday2" class="date-picker form-control col-md-7 col-xs-12" {{#if activePage.contract_view}} disabled {{/if}}
+                                           name="middle-name">
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6 col-sm-6">
+                                <label for="middle-name" class="control-label col-md-3 col-sm-3">محل تولد</label>
+                                <div class="col-md-6 col-sm-6">
+                                    <input id="middle-name2" class="form-control col-md-7 col-xs-12" type="text" {{#if activePage.contract_view}} disabled {{/if}}
+                                           name="middle-name">
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6 col-sm-6">
+                                <label for="middle-name" class="control-label col-md-3 col-sm-3">کد پستی </label>
+                                <div class="col-md-6 col-sm-6">
+                                    <input id="middle-name2" class="form-control col-md-7 col-xs-12" type="text" {{#if activePage.contract_view}} disabled {{/if}}
+                                           name="middle-name">
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6 col-sm-6">
+                                <label for="middle-name" class="control-label col-md-3 col-sm-3">تلفن ۱ </label>
+                                <div class="col-md-6 col-sm-6">
+                                    <input id="middle-name2" class="form-control col-md-7 col-xs-12" type="text" {{#if activePage.contract_view}} disabled {{/if}}
+                                           name="middle-name">
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6 col-sm-6">
+                                <label for="middle-name" class="control-label col-md-3 col-sm-3">تلفن ۲ </label>
+                                <div class="col-md-6 col-sm-6">
+                                    <input id="middle-name2" class="form-control col-md-7 col-xs-12" type="text" {{#if activePage.contract_view}} disabled {{/if}}
+                                           name="middle-name">
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6 col-sm-6">
+                                <label for="middle-name" class="control-label col-md-3 col-sm-3">مسئول ساختمان </label>
+                                <div class="col-md-6 col-sm-6">
+                                    <input id="middle-name2" class="form-control col-md-7 col-xs-12" type="text" {{#if activePage.contract_view}} disabled {{/if}}
+                                           name="middle-name">
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6 col-sm-6">
+                                <label class="control-label col-md-3 col-sm-3">جنسیت</label>
+                                <div class="col-md-6 col-sm-6">
+                                    <div id="gender2" class="btn-group" data-toggle="buttons">
+                                        <label class="btn btn-default" data-toggle-class="btn-primary"
+                                               data-toggle-passive-class="btn-default">
+                                            <input type="radio" name="gender" value="male" {{#if activePage.contract_view}} disabled {{/if}}> &nbsp; مذکر &nbsp;
+                                        </label>
+                                        <label class="btn btn-primary" data-toggle-class="btn-primary"
+                                               data-toggle-passive-class="btn-default">
+                                            <input type="radio" name="gender" value="female" checked="" {{#if activePage.contract_view}} disabled {{/if}}> مونث
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                    <div id="step-22">
+                        <h2 class="StepTitle">آدرس</h2>
+                        <div class="form-group col-md-3 col-sm-3">
+                            <label for="middle-name" class="control-label col-md-3 col-sm-3">استان</label>
+                            <div class="col-md-6 col-sm-6">
+                                <input id="middle-name2" class="form-control col-md-7 col-xs-12" type="text" {{#if activePage.contract_view}} disabled {{/if}}
+                                       name="middle-name">
+                            </div>
+                        </div>
+                        <div class="form-group col-md-3 col-sm-3">
+                            <label for="middle-name" class="control-label col-md-3 col-sm-3">شهر</label>
+                            <div class="col-md-6 col-sm-6">
+                                <input id="middle-name2" class="form-control col-md-7 col-xs-12" type="text" {{#if activePage.contract_view}} disabled {{/if}}
+                                       name="middle-name">
+                            </div>
+                        </div> <div class="form-group col-md-3 col-sm-3">
+                        <label for="middle-name" class="control-label col-md-3 col-sm-3">منطقه </label>
+                        <div class="col-md-6 col-sm-6">
+                            <input id="middle-name2" class="form-control col-md-7 col-xs-12" type="text" {{#if activePage.contract_view}} disabled {{/if}}
+                                   name="middle-name">
+                        </div>
+                    </div>
+                        <div class="form-group col-md-3 col-sm-3">
+                            <label for="middle-name" class="control-label col-md-3 col-sm-3">تعداد واحد  </label>
+                            <div class="col-md-6 col-sm-6">
+                                <input id="middle-name2" class="form-control col-md-7 col-xs-12" type="text" {{#if activePage.contract_view}} disabled {{/if}}
+                                       name="middle-name">
+                            </div>
+                        </div> <div class="form-group col-md-6 col-sm-6">
+                        <label for="middle-name" class="control-label col-md-3 col-sm-3">توضیحات آدرس </label>
+                        <div class="col-md-6 col-sm-6">
+                            <input id="middle-name2" class="form-control col-md-7 col-xs-12" type="text" {{#if activePage.contract_view}} disabled {{/if}}
+                                   name="middle-name">
+                        </div>
+                    </div>
+                        <div class="form-group col-md-6 col-sm-6">
+                            <label for="middle-name" class="control-label col-md-3 col-sm-3">ثبت موقعیت </label>
+                            <div class="col-md-6 col-sm-6">
+                                <input id="middle-name2" class="form-control col-md-7 col-xs-12" type="text" {{#if activePage.contract_view}} disabled {{/if}}
+                                       name="middle-name">
+                            </div>
+                        </div>
+                    </div>
+                    <div id="step-33">
+                        <h2 class="StepTitle">مشخصات آسانسور</h2>
+                        <div class="form-group col-md-6 col-sm-6">
+                            <label for="middle-name" class="control-label col-md-3 col-sm-3">تعداد آسانسور</label>
+                            <div class="col-md-6 col-sm-6">
+                                <input id="middle-name2" class="form-control col-md-7 col-xs-12" type="text" {{#if activePage.contract_view}} disabled {{/if}}
+                                       name="middle-name">
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6 col-sm-6">
+                            <label for="middle-name" class="control-label col-md-3 col-sm-3">کاربری ساختمان</label>
+                            <div class="col-md-6 col-sm-6">
+                                <select id="middle-name2" class="form-control col-md-7 col-xs-12 single" type="text" {{#if activePage.contract_view}} disabled {{/if}}
+                                       name="middle-name">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                </select>
+                            </div>
+                        </div>
+                        <p><b>گروه 1</b> مسکونی <b>گروه 2</b> اداری تا 10 واحد <b>گروه 3 </b>   اداری 10 واحد به بالا، مجتمع تجاری، بانکها، ساختمان پزشکان، خوابگاهها، مسافرخانه ها، انبارها، مدارس و دانشگاهها، مراکز ورزشی و تفریحی، تالار پذیرایی، رستورانها، آسانسور مسافربر پارکینگ <b> گروه 4 </b> بیمارستانها، درمانگاهها، کلینیکها، مراکز درمانی، آزمایشگاهها، رادیولوژی، هتلها، آشپزخانه صنعتی <b> گروه 5 </b> وزارت خانه ها، سازمانهای دولتی، دادسراها و دادگاهها، پادگان و مراکز نظامی، کلانتریها، شرهداریها، فرودگاهها، مترو و مساجد
+                        </p>
+
+                        <div class="form-group col-md-6 col-sm-6">
+                            <label for="middle-name" class="control-label col-md-3 col-sm-3">نوع آسانسور</label>
+                            <div class="col-md-6 col-sm-6">
+                                <select id="middle-name2" class="form-control col-md-7 col-xs-12 single" type="text" {{#if activePage.contract_view}} disabled {{/if}}
+                                        name="middle-name">
+                                    <option>گیربکس</option>
+                                    <option>گیرلس</option>
+                                    <option>هیدرولیک</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-3 col-sm-3">
+                            <label for="middle-name" class="control-label col-md-3 col-sm-3">تعداد توقت</label>
+                            <div class="col-md-6 col-sm-6">
+                                <input id="middle-name2" class="form-control col-md-7 col-xs-12" type="text" {{#if activePage.contract_view}} disabled {{/if}}
+                                       name="middle-name">
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-3 col-sm-3">
+                            <label for="middle-name" class="control-label col-md-3 col-sm-3">ظرفیت </label>
+                            <div class="col-md-6 col-sm-6">
+                                <input id="middle-name2" class="form-control col-md-7 col-xs-12" type="text" {{#if activePage.contract_view}} disabled {{/if}}
+                                       name="middle-name">
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-6 col-sm-6">
+                            <label for="middle-name" class="control-label col-md-3 col-sm-3">نوع درب طبقات</label>
+                            <div class="col-md-6 col-sm-6">
+                                <select id="middle-name2" class="form-control col-md-7 col-xs-12 single" type="text" {{#if activePage.contract_view}} disabled {{/if}}
+                                        name="middle-name">
+                                    <option>اتومات</option>
+                                    <option>لولایی</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-6 col-sm-6">
+                            <label for="middle-name" class="control-label col-md-3 col-sm-3">نوع درب کابین</label>
+                            <div class="col-md-6 col-sm-6">
+                                <select id="middle-name2" class="form-control col-md-7 col-xs-12 single" type="text" {{#if activePage.contract_view}} disabled {{/if}}
+                                        name="middle-name">
+                                    <option>تلسکوپی</option>
+                                    <option>اتوبوسی</option>
+                                    <option>سانترال</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-6 col-sm-6">
+                            <label for="middle-name" class="control-label col-md-3 col-sm-3">موتور گیربکس </label>
+                            <div class="col-md-6 col-sm-6">
+                                <select id="middle-name2" class="form-control col-md-7 col-xs-12 single" type="text" {{#if activePage.contract_view}} disabled {{/if}}
+                                        name="middle-name">
+                                    <option>ساسی</option>
+                                    <option>شیندلر</option>
+                                    <option>مونتانری</option>
+                                    <option>فیا</option>
+                                    <option>الکمپ</option>
+                                    <option>بهران</option>
+                                    <option>جم</option>
+                                    <option>ایتال</option>
+                                    <option>آکیش</option>
+                                    <option>سایر</option>
+                                </select>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group col-md-6 col-sm-6">
+                            <label for="middle-name" class="control-label col-md-3 col-sm-3">تابلو فرمان</label>
+                            <div class="col-md-6 col-sm-6">
+                                <select id="middle-name2" class="form-control col-md-7 col-xs-12 single" type="text" {{#if activePage.contract_view}} disabled {{/if}}
+                                        name="middle-name">
+                                    <option>آریان</option>
+                                    <option>پارکنترل</option>
+                                    <option>آرمان فراز</option>
+                                    <option>کیهان کنترل</option>
+                                    <option>پایا</option>
+                                    <option>سایر</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6 col-sm-6">
+                            <label for="middle-name" class="control-label col-md-3 col-sm-3">سیستم ترمز </label>
+                            <div class="col-md-6 col-sm-6">
+                                <select id="middle-name2" class="form-control col-md-7 col-xs-12 single" type="text" {{#if activePage.contract_view}} disabled {{/if}}
+                                        name="middle-name">
+                                    <option>تدریجی</option>
+                                    <option>آنی</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-6 col-sm-6">
+                            <label for="middle-name" class="control-label col-md-3 col-sm-3"> سال نصب</label>
+                            <div class="col-md-6 col-sm-6">
+                                <input id="middle-name2" class="form-control col-md-7 col-xs-12 single" type="text" {{#if activePage.contract_view}} disabled {{/if}}
+                                        name="middle-name">
+
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6 col-sm-6">
+                            <label for="middle-name" class="control-label col-md-3 col-sm-3">وضعیت استاندارد</label>
+                            <div class="col-md-6 col-sm-6">
+                                <select id="middle-name2" class="form-control col-md-7 col-xs-12 single" type="text" {{#if activePage.contract_view}} disabled {{/if}}
+                                        name="middle-name">
+                                    <option>دارد</option>
+                                    <option>ندارد</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6 col-sm-6">
+                            <label for="middle-name" class="control-label col-md-3 col-sm-3">تاریخ اعتبار</label>
+                            <div class="col-md-6 col-sm-6">
+                                <input id="middle-name2" class="form-control col-md-7 col-xs-12 single" type="text" {{#if activePage.contract_view}} disabled {{/if}}
+                                        name="middle-name">
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <div id="step-44">
+                        <h2 class="StepTitle">مدت قرارداد</h2>
+                        <div class="form-group col-md-6 col-sm-6">
+                            <label for="middle-name" class="control-label col-md-3 col-sm-3">تاریخ شروع</label>
+                            <div class="col-md-6 col-sm-6">
+                                <input id="middle-name2" class="form-control col-md-7 col-xs-12 single" type="text" {{#if activePage.contract_view}} disabled {{/if}}
+                                       name="middle-name">
+
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6 col-sm-6">
+                            <label for="middle-name" class="control-label col-md-3 col-sm-3">تاریخ پایان</label>
+                            <div class="col-md-6 col-sm-6">
+                                <input id="middle-name2" class="form-control col-md-7 col-xs-12 single" type="text" {{#if activePage.contract_view}} disabled {{/if}}
+                                       name="middle-name">
+
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6 col-sm-6">
+                            <label for="middle-name" class="control-label col-md-3 col-sm-3">تاریخ پایان گارانتی</label>
+                            <div class="col-md-6 col-sm-6">
+                                <input id="middle-name2" class="form-control col-md-7 col-xs-12 single" type="text" {{#if activePage.contract_view}} disabled {{/if}}
+                                       name="middle-name">
+
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6 col-sm-6">
+                            <label for="middle-name" class="control-label col-md-3 col-sm-3"> تعداد سرویس در سال</label>
+                            <div class="col-md-6 col-sm-6">
+                                <input id="middle-name2" class="form-control col-md-7 col-xs-12 single" type="text" {{#if activePage.contract_view}} disabled {{/if}}
+                                       name="middle-name">
+
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6 col-sm-6">
+                            <label for="middle-name" class="control-label col-md-3 col-sm-3">تاریخ سرویس اولیه</label>
+                            <div class="col-md-6 col-sm-6">
+                                <input id="middle-name2" class="form-control col-md-7 col-xs-12 single" type="text" {{#if activePage.contract_view}} disabled {{/if}}
+                                       name="middle-name">
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="step-55">
+                        <h2 class="StepTitle">شرایط اختصاصی</h2>
+                        <div class="form-group">
+
+
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" class="flat"  {{#if activePage.contract_view}} disabled {{/if}}> نیرو مقیم
+                                    </label>
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" class="flat"  {{#if activePage.contract_view}} disabled {{/if}}> خدمات در ساعات اداری
+                                    </label>
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" class="flat" {{#if activePage.contract_view}} disabled {{/if}} >خدمات در ساعات غیر اداری
+                                    </label>
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" class="flat"  {{#if activePage.contract_view}} disabled {{/if}}>خدمات در روزهای تعطیل
+                                    </label>
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" class="flat"  {{#if activePage.contract_view}} disabled {{/if}}>تهیه روغن با پیمانکار
+                                    </label>
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" class="flat" {{#if activePage.contract_view}} disabled {{/if}} > هماهنگی اعزام سرویسکار
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="step-66">
+                        <h2 class="StepTitle">بیمه</h2>
+                        <div class="form-group col-md-6 col-sm-6">
+                            <label for="middle-name" class="control-label col-md-3 col-sm-3">تاریخ شروع بیمه</label>
+                            <div class="col-md-6 col-sm-6">
+                                <input id="middle-name2" class="form-control col-md-7 col-xs-12 single" type="text" {{#if activePage.contract_view}} disabled {{/if}}
+                                       name="middle-name">
+
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6 col-sm-6">
+                            <label for="middle-name" class="control-label col-md-3 col-sm-3">تاریخ پایان بیمه</label>
+                            <div class="col-md-6 col-sm-6">
+                                <input id="middle-name2" class="form-control col-md-7 col-xs-12 single" type="text" {{#if activePage.contract_view}} disabled {{/if}}
+                                       name="middle-name">
+
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6 col-sm-6">
+                            <label for="middle-name" class="control-label col-md-3 col-sm-3">هزینه بیمه</label>
+                            <div class="col-md-6 col-sm-6">
+                                <input id="middle-name2" class="form-control col-md-7 col-xs-12 single" type="text" {{#if activePage.contract_view}} disabled {{/if}}
+                                       name="middle-name">
+
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6 col-sm-6">
+                            <label for="middle-name" class="control-label col-md-3 col-sm-3">شرکت بیمه گر</label>
+                            <div class="col-md-6 col-sm-6">
+                                <input id="middle-name2" class="form-control col-md-7 col-xs-12 single" type="text" {{#if activePage.contract_view}} disabled {{/if}}
+                                       name="middle-name">
+
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6 col-sm-6">
+                            <label for="middle-name" class="control-label col-md-3 col-sm-3">شماره بیمه </label>
+                            <div class="col-md-6 col-sm-6">
+                                <input id="middle-name2" class="form-control col-md-7 col-xs-12 single" type="text" {{#if activePage.contract_view}} disabled {{/if}}
+                                       name="middle-name">
+
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6 col-sm-6">
+                            <label class="col-md-3 col-sm-3 col-xs-12 control-label">هزینه بیمه
+                                <br>
+                            </label>
+
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <div class="checkbox">
+                                    <label>
+                                        <div class="iradio_flat-green checked" style="position: relative;"><input name="iCheck" class="flat" checked="checked" style="position: absolute; opacity: 0;" type="radio" {{#if activePage.contract_view}} disabled {{/if}}><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; border: 0px none; opacity: 0;"></ins></div>  به عهده کارفرما
+                                    </label>
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                        <div class="iradio_flat-green" style="position: relative;"><input name="iCheck" class="flat" style="position: absolute; opacity: 0;" type="radio" {{#if activePage.contract_view}} disabled {{/if}}><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; border: 0px none; opacity: 0;"></ins></div> به عهده پیمانکار
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div id="step-77">
+                        <h2 class="StepTitle">مبلغ قرارداد</h2>
+                        <div class="form-group col-md-6 col-sm-6">
+                            <label for="middle-name" class="control-label col-md-3 col-sm-3">مبلغ ماهیانه</label>
+                            <div class="col-md-6 col-sm-6">
+                                <input id="middle-name2" class="form-control col-md-7 col-xs-12 single" type="text" {{#if activePage.contract_view}} disabled {{/if}}
+                                       name="middle-name">
+
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6 col-sm-6">
+                            <label for="middle-name" class="control-label col-md-3 col-sm-3">مبلغ کل</label>
+                            <div class="col-md-6 col-sm-6">
+                                <input id="middle-name2" class="form-control col-md-7 col-xs-12 single" type="text" {{#if activePage.contract_view}} disabled {{/if}}
+                                       name="middle-name">
+
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6 col-sm-6">
+                            <label for="middle-name" class="control-label col-md-3 col-sm-3">شرایط پیش پرداخت</label>
+                            <div class="col-md-6 col-sm-6">
+                                <select id="middle-name2" class="form-control col-md-7 col-xs-12 single" type="text" {{#if activePage.contract_view}} disabled {{/if}}
+                                       name="middle-name">
+                                    <option>ماهیانه</option>
+                                    <option>سه ماهه</option>
+                                    <option>شش ماهه</option>
+                                    <option>یکجا</option>
+                                </select>
+
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6 col-sm-6">
+                            <label for="middle-name" class="control-label col-md-3 col-sm-3">مانده اولیه</label>
+                            <div class="col-md-6 col-sm-6">
+                                <input id="middle-name2" class="form-control col-md-7 col-xs-12 single" type="text" {{#if activePage.contract_view}} disabled {{/if}}
+                                       name="middle-name">
+
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6 col-sm-6">
+
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" class="flat" {{#if activePage.contract_view}} disabled {{/if}}
+                                              >ارزش افزوده محاسبه شود
+                                    </label>
+                                </div>
+
+                        </div>
+
+                    </div>
+                    <div id="step-88">
+                        <h2 class="StepTitle">توضیحات تکمیلی</h2>
+                        <div class="form-group col-md-6 col-sm-6">
+                            <label for="middle-name" class="control-label col-md-3 col-sm-3">معرف قرارداد</label>
+                            <div class="col-md-6 col-sm-6">
+                                <input id="middle-name2" class="form-control col-md-7 col-xs-12 single" type="text" {{#if activePage.contract_view}} disabled {{/if}}
+                                       name="middle-name">
+
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6 col-sm-6">
+                            <label for="middle-name" class="control-label col-md-3 col-sm-3">در صد پورسانت</label>
+                            <div class="col-md-6 col-sm-6">
+                                <input id="middle-name2" class="form-control col-md-7 col-xs-12 single" type="text" {{#if activePage.contract_view}} disabled {{/if}}
+                                       name="middle-name">
+
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6 col-sm-6">
+                            <label for="middle-name" class="control-label col-md-3 col-sm-3">سرویسکار</label>
+                            <div class="col-md-6 col-sm-6">
+                                <input id="middle-name2" class="form-control col-md-7 col-xs-12 single" type="text" {{#if activePage.contract_view}} disabled {{/if}}>
+
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- End SmartWizard Content -->
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
