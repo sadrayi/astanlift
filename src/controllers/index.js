@@ -25,6 +25,7 @@ module.exports = function (app, passport, Account) {
     const product_add = require('./product_add');
     const contracts = require('./contracts');
     const contract_add = require('./contract_add');
+    const sherkat_add = require('./sherkat_add');
     const product_detail = require('./product_detail');
     const pricing_table = require('./pricing_table');
     const request_list = require('./request_list');
@@ -73,6 +74,8 @@ module.exports = function (app, passport, Account) {
     app.get('/product_add', product_add.get);
     app.get('/pricing_table', pricing_table.get);
     app.get('/teknesian', teknesian.get);
+    app.get('/sherkat_add', sherkat_add.get);
+    app.post('/sherkat_add', sherkat_add.save);
     app.get('/product_category', product_category.get);
     app.get('/category_list', category_list.get);
     app.get('/product_detail', product_detail.get);

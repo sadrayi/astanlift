@@ -10,9 +10,10 @@ const helpers = require('./views/helpers/index');
 
 const app = express();
 var session = require('express-session'),
-    MongoStore = require('connect-mongo')(session),
     csrf = require('csurf'),
-    bodyParser = require('body-parser'),
+ logger = require('morgan'),
+
+bodyParser = require('body-parser'),
     cookieParser = require('cookie-parser'),
     mongoose = require('mongoose'),
     Account = require(__dirname +'/model/account'),
@@ -21,18 +22,22 @@ var session = require('express-session'),
         process.env.MONGOHQ_URL ||
         'mongodb://localhost/astanliftlocal',
     passport = require('passport');
+mongoose.Promise = global.Promise;
+
 // set up view engine
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 app.disable('x-powered-by');
 app.use(compression());
-mongoose.connect(uristring, function (err, res) {
+global.db = mongoose.createConnection(uristring, function (err, res) {
     if (err) {
         console.log ('ERROR connecting to: ' + uristring + '. ' + err);
     } else {
         console.log ('Succeeded connected to: ' + uristring);
     }
 });
+app.use(logger('dev'));
+
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 
@@ -59,7 +64,8 @@ app.use(function (err, req, res, next) {
     // handle CSRF token errors here
     res.status(403);
     res.send('Session has expired or form tampered with.');
-})
+});
+
 passport.use(Account.createStrategy());
 passport.serializeUser(Account.serializeUser());
 passport.deserializeUser(Account.deserializeUser());

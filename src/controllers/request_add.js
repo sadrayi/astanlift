@@ -10,5 +10,5 @@
  */
 
 exports.get = (req, res) => {
-  res.render('requests/request_add', { csrfToken: req.csrfToken(),activePage: { isAuthenticated:req.isAuthenticated(), request_add: true , title:'ثبت درخواست'} });
+  res.render('requests/request_add', { csrfToken: req.csrfToken(),  activePage: { isAuthenticated:req.isAuthenticated(), request_add: true , title:'ثبت درخواست'} });
 };

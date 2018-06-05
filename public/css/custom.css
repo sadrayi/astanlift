@@ -596,7 +596,7 @@ pre, code {
 
 body {
   color: #73879c;
-  background: #2a3f54;
+  background: #18acb6;
   font-family: IRANSans !important;
   font-size: 13px;
   font-weight: 400;
@@ -3577,7 +3577,7 @@ th {
 }
 
 .login {
-  background: #f7f7f7;
+  background: #00;
 }
 .login .fa-paw {
   font-size: 26px;
@@ -3623,7 +3623,6 @@ th {
   padding: 25px 0 0;
   position: relative;
   text-align: center;
-  text-shadow: 0 1px 0 #fff;
   min-width: 280px;
 }
 .login_content a {

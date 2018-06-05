@@ -10,5 +10,5 @@
  */
 
 exports.get = (req, res) => {
-  res.render('requests/request_view', { csrfToken: req.csrfToken(),activePage: { isAuthenticated:req.isAuthenticated(), request_view: true , title:'مشاهده درخواست'} });
+  res.render('requests/request_view', { csrfToken: req.csrfToken(),  activePage: { isAuthenticated:req.isAuthenticated(), request_view: true , title:'مشاهده درخواست'} });
 };
