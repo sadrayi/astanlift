@@ -8,7 +8,7 @@ module.exports = function (app, passport, Account) {
     const home = require('./home');
     const fruits = require('./fruits');
     const user = require('./user');
-    const teknesian = require('./teknesian');
+    const teknesian = require('./sherkat_list');
     const teknesian2 = require('./teknesian2');
     const operator = require('./operator');
     const invoice_list = require('./invoice_list');
@@ -73,7 +73,7 @@ module.exports = function (app, passport, Account) {
     app.get('/user', user.get);
     app.get('/product_add', product_add.get);
     app.get('/pricing_table', pricing_table.get);
-    app.get('/teknesian', teknesian.get);
+    app.get('/sherkat_list', teknesian.get);
     app.get('/sherkat_add', sherkat_add.get);
     app.post('/sherkat_add', sherkat_add.save);
     app.get('/product_category', product_category.get);

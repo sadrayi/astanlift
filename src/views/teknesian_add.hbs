@@ -21,24 +21,38 @@
                 <input id="last-name" name="last-name" required="required" class="form-control col-md-7 col-xs-12" type="text">
             </div>
         </div>
+
         <div class="form-group">
-            <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">نام
-                میانی </label>
+            <label class="control-label col-md-3 col-sm-3 col-xs-12">جنسیت</label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <div id="gender" class="btn-group" data-toggle="buttons">
+                    مذکر:
+                    <input type="radio" class="flat" name="gender" id="genderM" value="M" checked=""
+                           required/> مونث:
+                    <input type="radio" class="flat" name="gender" id="genderF" value="F"/>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">آدرس
+                 </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
                 <input id="middle-name" class="form-control col-md-7 col-xs-12" name="middle-name" type="text">
             </div>
         </div>
         <div class="form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12">جنسیت</label>
+            <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">تلفن
+                 </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-                <div id="gender" class="btn-group" data-toggle="buttons">
-                    <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                        <input name="gender" value="male" data-parsley-multiple="gender" type="radio"> &nbsp; مذکر &nbsp;
-                    </label>
-                    <label class="btn btn-primary" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                        <input name="gender" value="female" data-parsley-multiple="gender" type="radio"> مونث
-                    </label>
-                </div>
+                <input id="middle-name" class="form-control col-md-7 col-xs-12" name="middle-name" type="text">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12">تصویر تکنسین</label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input type="file" id="profile_pic" name="profile_pic"
+                               accept=".jpg, .jpeg, .png">
             </div>
         </div>
         <div class="form-group">
@@ -46,6 +60,31 @@
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
                 <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12">حوزه های کاری  <span class="required">*</span>
+            </label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+
+                <div class="checkbox">
+                    <label>
+                        <input value="" type="checkbox">سرویسکار
+                    </label>
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <input value="" type="checkbox"> تعمیرکار
+                    </label>
+                </div>
+
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">درباره تکنسین
+            </label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <textarea id="middle-name" class="form-control col-md-7 col-xs-12" name="middle-name" type="text"></textarea>
             </div>
         </div>
         <div class="ln_solid"></div>
