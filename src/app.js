@@ -3,6 +3,7 @@ const path = require('path');
 const favicon = require('serve-favicon');
 // import 'express-handlebars'
 const exphbs = require('express-handlebars');
+const fileUpload = require('express-fileupload');
 
 //const controllers = require('./controllers/index');
 // import helpers
@@ -65,7 +66,7 @@ app.use(function (err, req, res, next) {
     res.status(403);
     res.send('Session has expired or form tampered with.');
 });
-
+app.use(fileUpload());
 passport.use(Account.createStrategy());
 passport.serializeUser(Account.serializeUser());
 passport.deserializeUser(Account.deserializeUser());

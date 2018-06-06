@@ -1,6 +1,22 @@
-exports.get = (req, res) => {
-    res.render('teknesian_list2', { csrfToken: req.csrfToken(),  activePage: { isAuthenticated:req.isAuthenticated(), teknesian_list2: true, title:'لیست تکنسین ها'} });
-};
-exports.post = (req, res) => {
-    res.render('teknesian_list2', { csrfToken: req.csrfToken(),  activePage: { isAuthenticated:req.isAuthenticated(), teknesian_list2: true, title:'لیست تکنسین ها'} });
+var Teknesian = require("../model/teknesian");
+exports.get =async (req, res) => {
+    switch (req.query.message)
+    {
+        case "successadd":
+            var message = "alert-success";
+            var content = "ثبت نام با موفقیت انجام شد.";
+            break;
+        case "successedit":
+            var message = "alert-success";
+            var content = "شرکت با موفقیت ویرایش شد.";
+            break;
+    }
+    await Teknesian.find({}).then(async function (res2) {
+        res.render('teknesian_list', {
+            sherkatlist:res2,
+            message: {kind: message, content: content},
+            csrfToken: req.csrfToken(),
+            activePage: {isAuthenticated: req.isAuthenticated(), sherkat_list: true, title: 'لیست تکنسین ها'}
+        });
+    });
 };

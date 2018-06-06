@@ -87,7 +87,7 @@ module.exports = function (app, passport, Account) {
     app.get('/factor_add', factor_add.get);
     app.get('/invoice_detail', invoice_detail.get);
     app.get('/invoice_list', invoice_list.get);
-    app.get('/teknesian2', teknesian2.get);
+    app.get('/teknesian_list', teknesian2.get);
     app.get('/contract_add', contract_add.get);
     app.get('/sale_request', sale_request.get);
     app.get('/contracts', contracts.get);
@@ -98,6 +98,7 @@ module.exports = function (app, passport, Account) {
     app.get('/teknesian_detail', teknesian_detail.get);
     app.get('/user_add', user_add.get);
     app.get('/teknesian_add', teknesian_add.get);
+    app.post('/teknesian_add', teknesian_add.post);
     app.get('/operator_add', operator_add.get);
     app.get('/fruits', fruits.get);
     app.get('/fruits/:singleFruit', singleFruit.get);
@@ -108,4 +109,5 @@ module.exports = function (app, passport, Account) {
         req.session.destroy();
         res.redirect('back');
     });
+
 }

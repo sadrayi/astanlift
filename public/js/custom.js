@@ -2,13 +2,13 @@
  * Resize function without multiple trigger
  *
  * Usage:
- * $(window).smartresize(function(){  
+ * $(window).smartresize(function(){
  *     // code here
  * });
  */
-$(document).ready(function(){
+/*$(document).ready(function(){
     $('*').persiaNumber();
-});
+});*/
 $(document).ready(function() {
     $(document.getElementsByClassName("money")).each(function (i,e) {
         if(e.innerHTML!=null){
@@ -47,7 +47,7 @@ function moneyformat(moneyvalue) {
         };
     };
 
-    // smartresize 
+    // smartresize
     jQuery.fn[sr] = function(fn){  return fn ? this.bind('resize', debounce(fn)) : this.trigger(sr); };
 
 })(jQuery,'smartresize');

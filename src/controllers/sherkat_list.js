@@ -12,11 +12,6 @@ exports.get =async (req, res) => {
             break;
     }
     await Sherkat.find({}).then(async function (res2) {
-        if (res2.length>0)
-            if (res2.length<=10)
-            recordmessage="نمایش 1 تا "+res2.length+" رکورد";
-        else
-                recordmessage="نمایش 1 تا 10 رکورد از "+res2.length+" رکورد";
 
         res.render('sherkat_list', {
             sherkatlist:res2,

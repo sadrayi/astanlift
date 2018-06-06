@@ -319,6 +319,106 @@
 
     <!-- Custom Theme Scripts -->
     <script src="../js/custom.js"></script>
+    <script src="../js/persian-datepicker.js"></script>
+    <script src="../js/persian-date.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $(".normal-example").pDatepicker({
+                "inline": false,
+                "format": "L",
+                "viewMode": "year",
+                "initialValue": true,
+                "minDate": null,
+                "maxDate": null,
+                "autoClose": true,
+                "position": "auto",
+                "altFormat": "|",
+                "altField": "#altfieldExample",
+                "onlyTimePicker": false,
+                "onlySelectOnDate": true,
+                "calendarType": "persian",
+                "inputDelay": "1200",
+                "observer": false,
+                "calendar": {
+                    "persian": {
+                        "locale": "fa",
+                        "showHint": false,
+                        "leapYearMode": "astronomical"
+                    },
+                    "gregorian": {
+                        "locale": "en",
+                        "showHint": false
+                    }
+                },
+                "navigator": {
+                    "enabled": true,
+                    "scroll": {
+                        "enabled": true
+                    },
+                    "text": {
+                        "btnNextText": "<",
+                        "btnPrevText": ">"
+                    }
+                },
+                "toolbox": {
+                    "enabled": true,
+                    "calendarSwitch": {
+                        "enabled": false,
+                        "format": "MMMM"
+                    },
+                    "todayButton": {
+                        "enabled": false,
+                        "text": {
+                            "fa": "امروز",
+                            "en": "Today"
+                        }
+                    },
+                    "submitButton": {
+                        "enabled": true,
+                        "text": {
+                            "fa": "تایید",
+                            "en": "Submit"
+                        }
+                    },
+                    "text": {
+                        "btnToday": "امروز"
+                    }
+                },
+                "timePicker": {
+                    "enabled": false,
+                    "step": 1,
+                    "hour": {
+                        "enabled": false,
+                        "step": null
+                    },
+                    "minute": {
+                        "enabled": false,
+                        "step": null
+                    },
+                    "second": {
+                        "enabled": false,
+                        "step": null
+                    },
+                    "meridian": {
+                        "enabled": false
+                    }
+                },
+                "dayPicker": {
+                    "enabled": true,
+                    "titleFormat": "YYYY MMMM"
+                },
+                "monthPicker": {
+                    "enabled": true,
+                    "titleFormat": "YYYY"
+                },
+                "yearPicker": {
+                    "enabled": true,
+                    "titleFormat": "YYYY"
+                },
+                "responsive": true
+            });
+        });
+    </script>
 
           {{/if}}
 {{#if  activePage.sherkat_add}}
