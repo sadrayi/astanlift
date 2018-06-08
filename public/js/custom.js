@@ -6,9 +6,22 @@
  *     // code here
  * });
  */
-/*$(document).ready(function(){
+$(document).ready(function() {
+    $(document.getElementsByClassName("jalali")).each(function (i,e) {
+        if(e.innerHTML!=null){
+            var j=e.innerHTML;
+            var date = moment(j).format("MM/DD/YY");
+
+//Convert from normal moment to our jalali moment exstension using j's as below
+            var JalaliValue = moment(date).format('jYYYY/jM/jD');
+            e.innerHTML= JalaliValue;
+
+        }
+    })
+})
+$(document).ready(function(){
     $('*').persiaNumber();
-});*/
+});
 $(document).ready(function() {
     $(document.getElementsByClassName("money")).each(function (i,e) {
         if(e.innerHTML!=null){
@@ -18,6 +31,7 @@ $(document).ready(function() {
         }
     })
 })
+
 function moneyformat(moneyvalue) {
     moneyvalue=moneyvalue.replace(/./g, function(c, i, a) {
         return i && c !== "." && ((a.length - i) % 3 === 0) ? ',' + c : c;

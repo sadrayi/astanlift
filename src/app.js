@@ -27,9 +27,10 @@ mongoose.Promise = global.Promise;
 
 // set up view engine
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'hbs');
+app.set('view engine', 'html');
 app.disable('x-powered-by');
 app.use(compression());
+//// etesal be database ///
 global.db = mongoose.createConnection(uristring, function (err, res) {
     if (err) {
         console.log ('ERROR connecting to: ' + uristring + '. ' + err);
@@ -37,11 +38,17 @@ global.db = mongoose.createConnection(uristring, function (err, res) {
         console.log ('Succeeded connected to: ' + uristring);
     }
 });
-app.use(logger('dev'));
+/// end
 
+//// debugger
+app.use(logger('dev'));
+//// body parser baiarie dariaft moteghaie az url
 app.use(bodyParser.urlencoded({extended: false}));
+
+///// cookie control
 app.use(cookieParser());
 
+/////// tarif session ////
 app.use(
     session(
         {
@@ -54,10 +61,10 @@ app.use(
         }
     )
 );
-app.use(passport.initialize());
-app.use(passport.session());
+///// end ///////
+
+//// error handler for csrf tokens ////
 app.use(csrf());
-// error handler for csrf tokens
 app.use(function (err, req, res, next) {
     if (err.code !== 'EBADCSRFTOKEN') {
         return next(err);
@@ -66,26 +73,27 @@ app.use(function (err, req, res, next) {
     res.status(403);
     res.send('Session has expired or form tampered with.');
 });
+///// end //////
+
+///// express file upload
 app.use(fileUpload());
+
+////// passport //////
+app.use(passport.initialize());
+app.use(passport.session());
 passport.use(Account.createStrategy());
 passport.serializeUser(Account.serializeUser());
 passport.deserializeUser(Account.deserializeUser());
+//////// end //////////
 
-app.engine(
-  'hbs',
-  exphbs({
-    extname: 'hbs',
-    layoutsDir: path.join(__dirname, 'views', 'layouts'),
-    partialsDir: path.join(__dirname, 'views', 'partials'),
-    defaultLayout: 'main',
-    helpers,
-  })
-);
-
-app.set('port', process.env.PORT || 3000);
+///// motor view
+app.engine('html', require('ejs').renderFile);
+///// favicon
 app.use(favicon(path.join(__dirname, '..', 'public', 'favicon.ico')));
+///// directory public ( static )
 app.use(express.static(path.join(__dirname, '..', 'public')));
-//app.use(controllers);
+///// route asli
 require(__dirname +'/controllers/index')(app, passport, Account);
+app.set('port', process.env.PORT || 3000);
 
-module.exports = app;
+module.exports.app = app;

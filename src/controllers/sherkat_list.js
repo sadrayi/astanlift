@@ -13,11 +13,10 @@ exports.get =async (req, res) => {
     }
     await Sherkat.find({}).then(async function (res2) {
 
-        res.render('sherkat_list', {
+        res.render('sherkat_list.html', {
             sherkatlist:res2,
             message: {kind: message, content: content},
             csrfToken: req.csrfToken(),
-            recordmessage:recordmessage,
             activePage: {isAuthenticated: req.isAuthenticated(), sherkat_list: true, title: 'لیست شرکتهای همکار'}
         });
     });

@@ -1,6 +1,23 @@
-exports.get = (req, res) => {
-    res.render('user_list', { csrfToken: req.csrfToken(),  activePage: { isAuthenticated:req.isAuthenticated(), user_list: true, title:'لیست کاربران'} });
-};
-exports.post = (req, res) => {
-    res.render('user_list', { csrfToken: req.csrfToken(),  activePage: { isAuthenticated:req.isAuthenticated(), user_list: true, title:'لیست کاربران'} });
+var User = require("../model/user");
+exports.get =async (req, res) => {
+    switch (req.query.message)
+    {
+        case "successadd":
+            var message = "alert-success";
+            var content = "ثبت نام با موفقیت انجام شد.";
+            break;
+        case "successedit":
+            var message = "alert-success";
+            var content = "کاربر با موفقیت ویرایش شد.";
+            break;
+    }
+    await User.find({}).then(async function (res2) {
+
+        res.render('user_list.html', {
+            userlist:res2,
+            message: {kind: message, content: content},
+            csrfToken: req.csrfToken(),
+            activePage: {isAuthenticated: req.isAuthenticated(), sherkat_list: true, title: 'لیست کاربر ها'}
+        });
+    });
 };

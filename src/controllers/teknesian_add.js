@@ -7,26 +7,26 @@ exports.get =async (req, res) => {
     if(req.query.shid)
     await Teknesian.findOne({codemeli:req.query.shid}).then(async function (res3) {
 
-        res.render('teknesian_add', {sherkat:res3,   csrfToken: req.csrfToken(),  activePage: { isAuthenticated:req.isAuthenticated(),teknesian_add: true, title:'افزودن تکنسین'} });
+        res.render('teknesian_add.html', {sherkat:res3,   csrfToken: req.csrfToken(),  activePage: { isAuthenticated:req.isAuthenticated(),teknesian_add: true, title:'افزودن تکنسین'} });
 
     });
     else
-        res.render('teknesian_add', {   csrfToken: req.csrfToken(),  activePage: { isAuthenticated:req.isAuthenticated(),teknesian_add: true, title:'افزودن تکنسین'} });
+        res.render('teknesian_add.html', {   csrfToken: req.csrfToken(),  activePage: { isAuthenticated:req.isAuthenticated(),teknesian_add: true, title:'افزودن تکنسین'} });
 
 };
 exports.post = async (req, res) => {
     var body = req.body;
-    console.log(body);
+    console.log(body);            var charCodeZero = '۰'.charCodeAt(0);
+    persianDate=req.body.birthdate.split('/');
+    for(i=0;i<persianDate.length;i++){
+        persianDate[i] = parseInt( persianDate[i].replace(/[۰-۹]/g, function (w) {
+            return w.charCodeAt(0) - charCodeZero;
+        }));
+    }
+    let GeorgDate =jalaali.toGregorian(persianDate[0], persianDate[1], persianDate[2]);
+    let birthdate=GeorgDate.gy+"/"+GeorgDate.gm+"/"+GeorgDate.gd;
     if (req.files.profile_pic){
-            var charCodeZero = '۰'.charCodeAt(0);
-        persianDate=req.body.birthdate.split('/');
-        for(i=0;i<persianDate.length;i++){
-            persianDate[i] = parseInt( persianDate[i].replace(/[۰-۹]/g, function (w) {
-                return w.charCodeAt(0) - charCodeZero;
-            }));
-        }
-        let GeorgDate =jalaali.toGregorian(persianDate[0], persianDate[1], persianDate[2]);
-        let birthdate=GeorgDate.gy+"/"+GeorgDate.gm+"/"+GeorgDate.gd;
+
         // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
     let sampleFile = req.files.profile_pic;
     let extension =sampleFile.name.split(".")[1];
@@ -55,7 +55,7 @@ exports.post = async (req, res) => {
                         });
                     Teknesiansave.save(function (err) {
                         if(err)
-                                res.render('teknesian_add', {
+                                res.render(teknesian_add.html, {
                                     message:{
                                         kind:"alert-danger",
                                         content:"خطایی در ثبت رخ داده است."
@@ -74,7 +74,7 @@ exports.post = async (req, res) => {
                 }
                 else
                 {
-                        res.render('teknesian_add', {message:{kind:"alert-danger",content:"کدملی  تکراری می باشد."}, csrfToken: req.csrfToken(),  activePage: { isAuthenticated:req.isAuthenticated(), sherkat_add: true, title:'ثبت شرکت همکار'} });
+                        res.render(teknesian_add.html, {message:{kind:"alert-danger",content:"کدملی  تکراری می باشد."}, csrfToken: req.csrfToken(),  activePage: { isAuthenticated:req.isAuthenticated(), sherkat_add: true, title:'ثبت شرکت همکار'} });
 
                 }
 
@@ -124,7 +124,7 @@ exports.post = async (req, res) => {
                         });
                     Teknesiansave.save(function (err) {
                         if(err)
-                            res.render('teknesian_add', {
+                            res.render(teknesian_add.html, {
                                 message:{
                                     kind:"alert-danger",
                                     content:"خطایی در ثبت رخ داده است."
@@ -143,7 +143,7 @@ exports.post = async (req, res) => {
                 }
                 else
                 {
-                    res.render('teknesian_add', {message:{kind:"alert-danger",content:"کدملی  تکراری می باشد."}, csrfToken: req.csrfToken(),  activePage: { isAuthenticated:req.isAuthenticated(), sherkat_add: true, title:'ثبت شرکت همکار'} });
+                    res.render(teknesian_add.html, {message:{kind:"alert-danger",content:"کدملی  تکراری می باشد."}, csrfToken: req.csrfToken(),  activePage: { isAuthenticated:req.isAuthenticated(), sherkat_add: true, title:'ثبت شرکت همکار'} });
 
                 }
 

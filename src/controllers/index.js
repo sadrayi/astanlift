@@ -70,7 +70,7 @@ module.exports = function (app, passport, Account) {
     });
 // add home route
     app.get('/', home.get);
-    app.get('/user', user.get);
+    app.get('/user_list', user.get);
     app.get('/product_add', product_add.get);
     app.get('/pricing_table', pricing_table.get);
     app.get('/sherkat_list', teknesian.get);
@@ -97,6 +97,7 @@ module.exports = function (app, passport, Account) {
     app.get('/calendar', calendar.get);
     app.get('/teknesian_detail', teknesian_detail.get);
     app.get('/user_add', user_add.get);
+    app.post('/user_add', user_add.post);
     app.get('/teknesian_add', teknesian_add.get);
     app.post('/teknesian_add', teknesian_add.post);
     app.get('/operator_add', operator_add.get);

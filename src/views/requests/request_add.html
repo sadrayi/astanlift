@@ -1,3 +1,5 @@
+<% include ../partials/start.html%>
+
 <div class="col-md-12 col-sm-12 col-xs-12">
     <div class="x_panel">
 
@@ -25,7 +27,7 @@
                 <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-                <input id="first-name" required="required" class="form-control col-md-7 col-xs-12" type="text">
+                <input id="first-name" onfocusout="postMessage()" required="required" class="form-control col-md-7 col-xs-12" type="text">
             </div>
         </div>
         <div class="form-group">
@@ -122,7 +124,7 @@
         </div>
         <div class="form-group">
             <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                <button type="submit" class="add_field_button btn btn-primary">افزودن ردیف</button>
+                <a class="add_field_button btn btn-primary">افزودن ردیف</a>
                 <button type="submit" class="btn btn-primary">انصراف</button>
                 <button type="submit" class="btn btn-success">ثبت</button>
             </div>
@@ -131,3 +133,73 @@
 </div>
 </div>
 </div>
+</div>
+</div>
+</div>
+</main>
+
+</div>
+<% include ../partials/footer.html%>
+
+<script src="../vendors/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap -->
+<script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- FastClick -->
+<script src="../vendors/fastclick/lib/fastclick.js"></script>
+<!-- NProgress -->
+<script src="../vendors/nprogress/nprogress.js"></script>
+<!-- bootstrap-progressbar -->
+<script src="../vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+<!-- iCheck -->
+<script src="../vendors/iCheck/icheck.min.js"></script>
+
+<!-- bootstrap-daterangepicker -->
+<script src="../vendors/moment/min/moment.min.js"></script>
+
+<script src="../vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+
+<!-- iCheck -->
+<script src="../vendors/iCheck/icheck.min.js"></script>
+<!-- Datatables -->
+<script src="../vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="../vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<script src="../vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+<script src="../vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+<script src="../vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
+<script src="../vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
+<script src="../vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
+<script src="../vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+<script src="../vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+<script src="../vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+<script src="../vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+<script src="../vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+<script src="../vendors/jszip/dist/jszip.min.js"></script>
+<script src="../vendors/pdfmake/build/pdfmake.min.js"></script>
+<script src="../js/socket.io.js"></script>
+
+<script src="../vendors/pdfmake/build/vfs_fonts.js"></script>
+<script>
+    console.log("trying");
+    var socket = io.connect('http://localhost:3000');
+    socket.on('announcements', function(data) {
+        console.log('Got announcement:', data.message);
+    });
+
+</script>
+<script>
+    function postMessage()
+    {
+        if (socket) {
+            console.log("sending");
+            socket.emit('message',$('#first-name').val());
+        }
+    }
+</script>
+<!-- Custom Theme Scripts -->
+<script src="../js/custom.min.js"></script>
+<script src="../js/persianumber.js"></script>
+
+</div>
+</div>
+</body>
+</html>

@@ -12,7 +12,8 @@ exports.get =async (req, res) => {
             break;
     }
     await Teknesian.find({}).then(async function (res2) {
-        res.render('teknesian_list', {
+
+        res.render('teknesian_list.html', {
             sherkatlist:res2,
             message: {kind: message, content: content},
             csrfToken: req.csrfToken(),
