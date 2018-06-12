@@ -2,49 +2,48 @@
 
 <div class="col-md-12 col-sm-12 col-xs-12">
     <div class="x_panel">
-
+        <%if (typeof message  !== 'undefined' ){%>
+        <div class="alert <%=message.kind%> fade in">
+            <strong>  <%=message.content%></strong>
+        </div>
+        <%}%>
 <div class="x_content">
     <br>
-    <form id="demo-form2" data-parsley-validate="" class="form-horizontal form-label-left" novalidate="">
+    <form method="post" id="form2" data-parsley-validate="" class="form-horizontal form-label-left" novalidate="">
 
         <div class="form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">نوع درخواست
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="kind">نوع درخواست
                 <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-                <select id="last-name" name="last-name" required="required" class="form-control col-md-7 col-xs-12" type="text">
-                    <option>فروش آسانسور</option>
-                    <option>عقد قرارداد سرویس ماهیانه</option>
-                    <option>درخواست تعمیر</option>
-                    <option>درخواست استاندارد</option>
-                    <option>درخواست استاندارد</option>
-                    <option>درخواست مشاوره و نظرات</option>
+                <select id="kind" name="kind" required="required" class="form-control col-md-7 col-xs-12" type="text">
+                    <option <% if (typeof sherkat !== 'undefined'){ %>  <% if ( sherkat.kind === 'فروش آسانسور' ) { %> selected <% }} %> >فروش آسانسور</option>
+                    <option <% if (typeof sherkat !== 'undefined'){ %>  <% if ( sherkat.kind === 'عقد قرارداد سرویس ماهیانه' ) { %> selected <% }} %> >عقد قرارداد سرویس ماهیانه</option>
+                    <option <% if (typeof sherkat !== 'undefined'){ %>  <% if ( sherkat.kind === 'درخواست تعمیر' ) { %> selected <% }} %>>درخواست تعمیر</option>
+                    <option <% if (typeof sherkat !== 'undefined'){ %>  <% if ( sherkat.kind === 'درخواست استاندارد' ) { %> selected <% }} %>>درخواست استاندارد</option>
+                    <option <% if (typeof sherkat !== 'undefined'){ %>  <% if ( sherkat.kind === 'درخواست مشاوره و نظرات' ) { %> selected <% }} %>>درخواست مشاوره و نظرات</option>
                 </select>
             </div>
         </div>
         <div class="form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">شماره همراه فرد یا شماره قرارداد
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="phone">شماره همراه درخواست دهنده
                 <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-                <input id="first-name" onfocusout="postMessage()" required="required" class="form-control col-md-7 col-xs-12" type="text">
+                <input id="phone" <% if (typeof sherkat !== 'undefined'){ %>   value=<%=sherkat.phone%> <% } %> name="phone" onblur="postMessage()" required="required" class="form-control col-md-7 col-xs-12" type="text">
             </div>
         </div>
         <div class="form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">نام و نام خانوادگی درخواست دهنده
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="requester">نام و نام خانوادگی درخواست دهنده
                 <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-                <input id="first-name" required="required" class="form-control col-md-7 col-xs-12" type="text">
+                <input id="requester"  name="requester" readonly="readonly" required="required" class="form-control col-md-7 col-xs-12" type="text">
+                <input id="id" <% if (typeof sherkat !== 'undefined'){ %>   value=<%=sherkat._id%> <% } %> name="id" type="hidden" class="form-control col-md-7 col-xs-12" type="text">
             </div>
         </div>
 
-        <div class="form-group">
-            <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">
-            </label>
-            <div class="col-md-6 col-sm-6 col-xs-12">
-            </div>
-        </div>
+
         <div/>
         <div class="form-group">
 
@@ -53,14 +52,16 @@
 
                         <div class="clearfix"></div>
                     </div>
-                    <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">انتخاب آدرس
+            <input id="sabtkind" name="sabtkind" class="hidden"          <% if (typeof sherkat !== 'undefined'){%> value="update" <% } else {%> value="register" <%}%>
+            >        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+
+            <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" >انتخاب آدرس
                             <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <select id="last-name" name="last-name" required="required" class="form-control col-md-7 col-xs-12" type="text">
-                                <option>مشهد-صیاد شیرازی ۲ سرو ۱۰ پلاک ۵۱</option>
-                                <option>سایر</option>
+                            <select id="adressesselect" onchange="addressChange()" required="required" class="form-control col-md-7 col-xs-12" type="text">
+                                <option value="0">سایر</option>
                             </select>
                         </div>
                     </div>
@@ -68,7 +69,7 @@
                             <label class="control-label col-md-3 col-sm-3 col-xs-12">شهر <span class="required">*</span>
                             </label>
                             <div class="col-md-9 col-sm-9 col-xs-12">
-                                <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text">
+                                <input id="city" <% if (typeof sherkat !== 'undefined'){ %> readonly="readonly"  value=<%=sherkat.city%> <% } %> name="city" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text">
                             </div>
                         </div>
 
@@ -76,7 +77,7 @@
                             <label class="control-label col-md-3 col-sm-3 col-xs-12">منطقه <span class="required">*</span>
                             </label>
                             <div class="col-md-9 col-sm-9 col-xs-12">
-                                <input id="oneprice" class="oneprice date-picker form-control col-md-7 col-xs-12" required="required" type="text">
+                                <input id="zone" name="zone" <% if (typeof sherkat !== 'undefined'){ %> readonly="readonly"  value=<%=sherkat.zone%> <% } %> class="oneprice date-picker form-control col-md-7 col-xs-12" required="required" type="text">
                             </div>
                         </div>
 
@@ -84,7 +85,8 @@
                             <label class="control-label col-md-3 col-sm-3 col-xs-12">جزئیات آدرس<span class="required">*</span>
                             </label>
                             <div class="col-md-9 col-sm-9 col-xs-12">
-                                <input id="quantity" class="quantity date-picker form-control col-md-7 col-xs-12" required="required" type="text">
+                                <input id="address" name="address" <% if (typeof sherkat !== 'undefined'){ %> readonly="readonly"   value=<%=sherkat.address%> <% } %> class="quantity date-picker form-control col-md-7 col-xs-12" required="required" type="text">
+                                <input  id="addressid" name="addressid" <% if (typeof sherkat !== 'undefined'){ %>   value="<%=sherkat.addressid%>" <% } else{%> value="0" <% }%>class="quantity date-picker form-control col-md-7 col-xs-12" required="required" type="hidden">
                             </div>
                         </div>
 
@@ -92,7 +94,7 @@
                             <label class="control-label col-md-3 col-sm-3 col-xs-12">توضیحات <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <textarea id="birthday" class="date-picker form-control col-md-7 col-xs-12"  type="text"></textarea>
+                                <textarea id="comment" name="comment"  class="date-picker form-control col-md-7 col-xs-12"  type="text"><% if (typeof sherkat !== 'undefined'){ %>   <%=sherkat.comment%> <% } %></textarea>
                             </div>
                         </div>
 
@@ -104,12 +106,12 @@
                 <div class="col-md-9 col-sm-9 col-xs-12">
                     <div class="radio">
                         <label>
-                            <input type="radio" class="flat"  name="iCheck"
+                            <input onchange="onmanualteknesian()"   type="radio" class="flat"  name="teknesiankind" value="manual" id="teknesiankindauto"
                                    checked="checked">خودکار
                         </label>
                         <label>
-                            <input type="radio" class="flat maliat" onclick="calculate()" id="maliat"  name="iCheck"
-                            > دستی
+                            <input onchange="onmanualteknesian()" type="radio" name="teknesiankind" value="auto" class="flat "  id="teknesiankindmanual"
+                            <% if (typeof sherkat !== 'undefined'){ %>  <% if ( sherkat.teknesiankind === "auto" ) { %> checked="checked" <% }} %>> دستی
                         </label>
                     </div>
                 </div>
@@ -118,13 +120,12 @@
                 <label class="control-label col-md-3 col-sm-3 col-xs-12">تکنسین <span class="required">*</span>
                 </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                    <input id="quantity" class="quantity date-picker form-control col-md-7 col-xs-12" required="required" type="text">
+                    <input id="teknesian" name="teknesian" readonly="readonly" class="quantity date-picker form-control col-md-7 col-xs-12" required="required" type="text"  <% if (typeof sherkat !== 'undefined'){ %>   value=<%=sherkat.teknesian%> <% } %>>
                 </div>
             </div>
         </div>
         <div class="form-group">
             <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                <a class="add_field_button btn btn-primary">افزودن ردیف</a>
                 <button type="submit" class="btn btn-primary">انصراف</button>
                 <button type="submit" class="btn btn-success">ثبت</button>
             </div>
@@ -179,26 +180,36 @@
 
 <script src="../vendors/pdfmake/build/vfs_fonts.js"></script>
 <script>
-    console.log("trying");
-    var socket = io.connect('http://localhost:3000');
-    socket.on('announcements', function(data) {
-        console.log('Got announcement:', data.message);
-    });
-
-</script>
-<script>
-    function postMessage()
-    {
-        if (socket) {
-            console.log("sending");
-            socket.emit('message',$('#first-name').val());
-        }
-    }
+    <% if (typeof sherkat !== 'undefined'){ %>
+    var sherkat = <%-JSON.stringify(sherkat)%>;
+<%}%>
+    <% if (typeof teknesian !== 'undefined'){ %>
+    var teknesian = <%-JSON.stringify(teknesian)%>;
+<%}%>
 </script>
 <!-- Custom Theme Scripts -->
 <script src="../js/custom.min.js"></script>
 <script src="../js/persianumber.js"></script>
+<script src="../js/request_add.js"></script>
+<script src="../js/jquery.easy-autocomplete.min.js"></script>
 
+<!-- CSS file -->
+<link rel="stylesheet" href="../css/easy-autocomplete.min.css">
+<script>
+    var option = [];
+    console.log("tek:"+teknesian);
+
+    for (w=0;w<teknesian.length;w++)
+{
+    console.log("tek:"+teknesian[w]);
+    option.push(teknesian[w].lastname);
+}
+var options={
+    data:option
+};
+console.log(options)
+    $("#teknesian").easyAutocomplete(options);
+</script>
 </div>
 </div>
 </body>

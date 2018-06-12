@@ -75,8 +75,25 @@ function SmartWizard(target, options) {
                     }
                 }else{
                     var frm = $this.target.parents('form');
+                    console.log("frn:"+frm.length);
                     if(frm && frm.length){
+                        var dates = $( ".normal-example" );
+                        for(e=0;e<dates.length;e++)
+                        {
+                            var charCodeZero = '۰'.charCodeAt(0);
+
+                            var persiandate=dates[e].value.split('/');;
+                            for(i=0;i<persiandate.length;i++){
+                                persiandate[i] = parseInt( persiandate[i].replace(/[۰-۹]/g, function (w) {
+                                    return w.charCodeAt(0) - charCodeZero;
+                                }));
+                            }
+                            var englishdate=persiandate[0]+"/"+persiandate[1]+"/"+persiandate[2];
+                            dates[e].value=moment.from(englishdate, 'fa', 'YYYY/MM/DD').locale('en').format('YYYY/MM/DD');
+
+                        }
                         frm.submit();
+
                     }
                 }
             }

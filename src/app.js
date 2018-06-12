@@ -41,7 +41,7 @@ global.db = mongoose.createConnection(uristring, function (err, res) {
 /// end
 
 //// debugger
-app.use(logger('dev'));
+//app.use(logger('dev'));
 //// body parser baiarie dariaft moteghaie az url
 app.use(bodyParser.urlencoded({extended: false}));
 

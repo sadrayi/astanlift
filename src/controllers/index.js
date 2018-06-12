@@ -83,12 +83,14 @@ module.exports = function (app, passport, Account) {
     app.get('/periodic_requests', request_list.priodic);
     app.get('/request_view', request_view.get);
     app.get('/request_add', request_add.get);
+    app.post('/request_add', request_add.post);
     app.get('/product_list', product_list.get);
     app.get('/factor_add', factor_add.get);
     app.get('/invoice_detail', invoice_detail.get);
     app.get('/invoice_list', invoice_list.get);
     app.get('/teknesian_list', teknesian2.get);
     app.get('/contract_add', contract_add.get);
+    app.post('/contract_add', contract_add.post);
     app.get('/sale_request', sale_request.get);
     app.get('/contracts', contracts.get);
     app.get('/operator', operator.get);

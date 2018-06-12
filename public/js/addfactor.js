@@ -7,7 +7,7 @@
         $(add_button).click(function(e){ //on add input button click
             e.preventDefault();
             if(x < max_fields){ //max input box allowed
-                x++; //text box increment
+               //text box increment
                 $(wrapper).append('        <div>\n' +
                     '        <div class="x_title">\n' +
                     '            <h2>ردیف '+x+'</h2>\n' +
@@ -19,7 +19,7 @@
                     '            <label class="control-label col-md-3 col-sm-3 col-xs-12">موضوع <span class="required">*</span>\n' +
                     '            </label>\n' +
                     '            <div class="col-md-6 col-sm-6 col-xs-12">\n' +
-                    '                <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text">\n' +
+                    '                <input id="radif['+x+'][title]" name="radif[x][title]" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text">\n' +
                     '            </div>\n' +
                     '        </div>\n' +
                     '\n' +
@@ -27,7 +27,7 @@
                     '            <label class="control-label col-md-3 col-sm-3 col-xs-12">قیمت واحد <span class="required">*</span>\n' +
                     '            </label>\n' +
                     '            <div class="col-md-6 col-sm-6 col-xs-12">\n' +
-                    '                <input id="birthday" class="oneprice date-picker form-control col-md-7 col-xs-12" required="required" type="text">\n' +
+                    '                <input id="radif['+x+'][percost]" name="radif[x][percost]" class="oneprice date-picker form-control col-md-7 col-xs-12" required="required" type="number">\n' +
                     '            </div>\n' +
                     '        </div>\n' +
                     '\n' +
@@ -35,7 +35,7 @@
                     '            <label class="control-label col-md-3 col-sm-3 col-xs-12">تعداد <span class="required">*</span>\n' +
                     '            </label>\n' +
                     '            <div class="col-md-6 col-sm-6 col-xs-12">\n' +
-                    '                <input id="birthday" class="quantity date-picker form-control col-md-7 col-xs-12" required="required" type="text">\n' +
+                    '                <input id="radif['+x+'][quantity]" name="radif[x][count]" class="quantity date-picker form-control col-md-7 col-xs-12" required="required" type="number">\n' +
                     '            </div>\n' +
                     '        </div>\n' +
                     '\n' +
@@ -43,12 +43,13 @@
                     '            <label class="control-label col-md-3 col-sm-3 col-xs-12">توضیحات <span class="required">*</span>\n' +
                     '            </label>\n' +
                     '            <div class="col-md-6 col-sm-6 col-xs-12">\n' +
-                    '                <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"  type="text">\n' +
+                    '                <input id="radif['+x+'][comment]" name="radif[x][cmment]" class="date-picker form-control col-md-7 col-xs-12"  type="text">\n' +
                     '            </div>\n' +
                     '        </div>\n' +
-                    '        <div class="ln_solid"></div>\n' +
+                    '        <div class=""></div>\n' +
                     '\n' +
                     '        </div>'); //add input box
+                x++;
             }
         });
 
@@ -57,7 +58,15 @@
         })
     });
 
-    $(document).on('keyup', '.quantity, .net_rate .maliat', function () {
+    $(document).on('keyup', '.quantity', function () {
+        calculate();
+    })
+
+    $(document).on('keyup', '.net_rate', function () {
+        calculate();
+    })
+
+    $(document).on('change', '.maliat', function () {
         calculate();
     })
 
@@ -67,26 +76,28 @@
         var sum = 0;
         var qq=0;
         document.getElementById("Grand").value=sum;
-        $(document.getElementsByClassName("oneprice")).each(function (i,e) {
+        var radif = $(document.getElementsByClassName("quantity"));
+        console.log("radif:"+radif.length);
+            radif.each(function (i,e) {
             sum+=persianToEnglish(e.value)*persianToEnglish(document.getElementsByClassName("quantity")[i].value);
             qq++;
         })
-        document.getElementById('Grand').innerHTML =moneyformat (sum)+ " ریال ";
-        if( document.getElementById("maliat").checked)
+        document.getElementById('Grand').innerHTML = moneyformat(sum.toString());
+        if( document.getElementById("arzeshafzude").value==="1")
         {
             maliat=sum*9/100;
             maliat= Math.round(maliat)
-                document.getElementById('maliatcount').innerHTML =moneyformat( maliat)+ " ریال ";
+                document.getElementById('maliatcount').innerHTML =moneyformat( maliat.toString());
         }
-        document.getElementById('total').innerHTML = moneyformat(maliat+sum)+ " ریال ";
+        else {
+            document.getElementById('maliatcount').innerHTML = moneyformat("0");
+            maliat=0;
+        }
+
+        document.getElementById('total').innerHTML = moneyformat((maliat+sum).toString());
 
     };
-    function moneyformat(moneyvalue) {
-        moneyvalue=moneyvalue.toFixed(0).replace(/./g, function(c, i, a) {
-            return i && c !== "." && ((a.length - i) % 3 === 0) ? ',' + c : c;
-        });
-        return moneyvalue;
-    }
+
     function persianToEnglish(value) {
         var newValue="";
         for (var i=0;i<value.length;i++)
