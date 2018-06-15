@@ -19,7 +19,7 @@
                     '            <label class="control-label col-md-3 col-sm-3 col-xs-12">موضوع <span class="required">*</span>\n' +
                     '            </label>\n' +
                     '            <div class="col-md-6 col-sm-6 col-xs-12">\n' +
-                    '                <input id="radif['+x+'][title]" name="radif[x][title]" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text">\n' +
+                    '                <input id="radif['+x+'][title]" name="title" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text">\n' +
                     '            </div>\n' +
                     '        </div>\n' +
                     '\n' +
@@ -27,7 +27,7 @@
                     '            <label class="control-label col-md-3 col-sm-3 col-xs-12">قیمت واحد <span class="required">*</span>\n' +
                     '            </label>\n' +
                     '            <div class="col-md-6 col-sm-6 col-xs-12">\n' +
-                    '                <input id="radif['+x+'][percost]" name="radif[x][percost]" class="oneprice date-picker form-control col-md-7 col-xs-12" required="required" type="number">\n' +
+                    '                <input id="radif['+x+'][percost]" name="percost" class="oneprice date-picker form-control col-md-7 col-xs-12" required="required" type="number">\n' +
                     '            </div>\n' +
                     '        </div>\n' +
                     '\n' +
@@ -35,7 +35,7 @@
                     '            <label class="control-label col-md-3 col-sm-3 col-xs-12">تعداد <span class="required">*</span>\n' +
                     '            </label>\n' +
                     '            <div class="col-md-6 col-sm-6 col-xs-12">\n' +
-                    '                <input id="radif['+x+'][quantity]" name="radif[x][count]" class="quantity date-picker form-control col-md-7 col-xs-12" required="required" type="number">\n' +
+                    '                <input id="radif['+x+'][quantity]" name="quantity" class="quantity date-picker form-control col-md-7 col-xs-12" required="required" type="number">\n' +
                     '            </div>\n' +
                     '        </div>\n' +
                     '\n' +
@@ -43,7 +43,7 @@
                     '            <label class="control-label col-md-3 col-sm-3 col-xs-12">توضیحات <span class="required">*</span>\n' +
                     '            </label>\n' +
                     '            <div class="col-md-6 col-sm-6 col-xs-12">\n' +
-                    '                <input id="radif['+x+'][comment]" name="radif[x][cmment]" class="date-picker form-control col-md-7 col-xs-12"  type="text">\n' +
+                    '                <input id="radif['+x+'][comment]" name="comment" class="date-picker form-control col-md-7 col-xs-12"  type="text">\n' +
                     '            </div>\n' +
                     '        </div>\n' +
                     '        <div class=""></div>\n' +
@@ -74,27 +74,34 @@
     function calculate(){
         var maliat=0;
         var sum = 0;
+        var count=0;
         var qq=0;
         document.getElementById("Grand").value=sum;
         var radif = $(document.getElementsByClassName("quantity"));
         console.log("radif:"+radif.length);
             radif.each(function (i,e) {
-            sum+=persianToEnglish(e.value)*persianToEnglish(document.getElementsByClassName("quantity")[i].value);
-            qq++;
+                console.log(parseInt(persianToEnglish(e.value)));
+                if( !isNaN(parseInt(persianToEnglish(e.value))))
+                    count+=parseInt(persianToEnglish(e.value));
+                sum+=persianToEnglish(e.value)*persianToEnglish(document.getElementsByClassName("quantity")[i].value);
+                qq++;
         })
         document.getElementById('Grand').innerHTML = moneyformat(sum.toString());
         if( document.getElementById("arzeshafzude").value==="1")
         {
             maliat=sum*9/100;
             maliat= Math.round(maliat)
-                document.getElementById('maliatcount').innerHTML =moneyformat( maliat.toString());
+            document.getElementById('maliatcount').innerHTML =moneyformat( maliat.toString());
+            document.getElementById('maliatcount1').value =( maliat.toString());
         }
         else {
             document.getElementById('maliatcount').innerHTML = moneyformat("0");
+            document.getElementById('maliatcount1').value = ("0");
             maliat=0;
         }
-
+        document.getElementById('factorcount').value =count;
         document.getElementById('total').innerHTML = moneyformat((maliat+sum).toString());
+        document.getElementById('total1').value = ((maliat+sum).toString());
 
     };
 

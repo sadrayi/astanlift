@@ -11,6 +11,10 @@ exports.get =async (req, res) => {
             var message = "alert-success";
             var content = "شرکت با موفقیت ویرایش شد.";
             break;
+        case "successaddfactor":
+            var message = "alert-success";
+            var content = "فاکتور با موفقیت ویرایش شد.";
+            break;
     }
     await requestModel.find({}).then(async function (res2) {
         for(i=0;i<res2.length;i++)

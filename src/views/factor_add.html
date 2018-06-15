@@ -7,19 +7,31 @@
     <form method="post" id="demo-form2" data-parsley-validate="" class="form-horizontal form-label-left" novalidate="">
 
         <div class="form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="phone">شماره همراه فرد یا شماره قرارداد
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="phone">شماره همراه فرد
                 <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-                <input id="phone" name="phone" readonly  required="required" class="form-control col-md-7 col-xs-12" type="text">
+                <input id="phone" name="phone" readonly value="<%=request.phone%>" required="required" class="form-control col-md-7 col-xs-12" type="text">
+                <input id="requestid" name="requestid" readonly value="<%=id%>" type="hidden" required="required" class="form-control col-md-7 col-xs-12" >
             </div>
         </div>
         <div class="form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">بابت
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="phone"> نام فرد
+                <span class="required">*</span>
+            </label>
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            <input id="sabtkind" name="sabtkind" class="hidden"          <% if (typeof request !== 'undefined'){%> value="update" <% } else {%> value="register" <%}%>
+            >
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <input id="requester" name="requester" readonly value=" <% if (typeof request !== 'undefined'){%><%=request.requester%> <%}%>" required="required" class="form-control col-md-7 col-xs-12" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="requestkind">بابت
                 <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-                <input readonly id="last-name" name="last-name" required="required" class="form-control col-md-7 col-xs-12" type="text">
+                <input readonly id="requestkind" name="requestkind" value=" <% if (typeof request !== 'undefined'){%><%=request.kind%> <%}%>" required="required" class="form-control col-md-7 col-xs-12" type="text">
 
             </div>
         </div>
@@ -57,7 +69,7 @@
             <label class="control-label col-md-3 col-sm-3 col-xs-12">موضوع <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-                <input id="radif[0][title]" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text">
+                <input id="radif[0][title]" name="title" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text">
             </div>
         </div>
 
@@ -65,7 +77,7 @@
             <label class="control-label col-md-3 col-sm-3 col-xs-12">قیمت واحد <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-                <input id="radif[0][percost]" class="oneprice date-picker form-control col-md-7 col-xs-12" required="required" type="number">
+                <input id="radif[0][percost]"  name="percost" class="oneprice date-picker form-control col-md-7 col-xs-12" required="required" type="number">
             </div>
         </div>
 
@@ -73,7 +85,7 @@
             <label class="control-label col-md-3 col-sm-3 col-xs-12">تعداد <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-                <input id="radif[0][quantity]" class="quantity date-picker form-control col-md-7 col-xs-12" required="required" type="number">
+                <input id="radif[0][quantity]"  name="quantity" class="quantity date-picker form-control col-md-7 col-xs-12" required="required" type="number">
             </div>
         </div>
 
@@ -81,7 +93,7 @@
             <label class="control-label col-md-3 col-sm-3 col-xs-12">توضیحات <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-                <input id="radif[0][comment]" class="date-picker form-control col-md-7 col-xs-12"  type="text">
+                <input id="radif[0][comment]" name="comment" class="date-picker form-control col-md-7 col-xs-12"  type="text">
             </div>
         </div>
         <div class=""></div>
@@ -95,15 +107,20 @@
                 <tbody>
                 <tr>
                     <th style="width:50%">مجموع:</th>
+
                     <td  class="money"style="width:50%; text-align: left" id="Grand"> 0</td>
                 </tr>
                 <tr>
                     <th>مالیات (9%)</th>
+                    <input class="hidden" name="factormaliat" id="maliatcount1">
+
                     <td class="money" style="width:50%; text-align: left" id="maliatcount">0 </td>
                 </tr>
+                <input class="hidden" name="factorcount" id="factorcount">
                 <tr>
                     <th>قابل پرداخت:</th>
                     <td class="money" style="width:50%; text-align: left" id="total">0 </td>
+                    <input class="hidden" name="factorsum" id="total1">
                 </tr>
                 </tbody>
             </table>

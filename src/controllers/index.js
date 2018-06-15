@@ -86,6 +86,7 @@ module.exports = function (app, passport, Account) {
     app.post('/request_add', request_add.post);
     app.get('/product_list', product_list.get);
     app.get('/factor_add', factor_add.get);
+    app.post('/factor_add', factor_add.post);
     app.get('/invoice_detail', invoice_detail.get);
     app.get('/invoice_list', invoice_list.get);
     app.get('/teknesian_list', teknesian2.get);
