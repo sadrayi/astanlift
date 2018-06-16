@@ -83,7 +83,7 @@
                 console.log(parseInt(persianToEnglish(e.value)));
                 if( !isNaN(parseInt(persianToEnglish(e.value))))
                     count+=parseInt(persianToEnglish(e.value));
-                sum+=persianToEnglish(e.value)*persianToEnglish(document.getElementsByClassName("quantity")[i].value);
+                sum+=persianToEnglish(e.value)*persianToEnglish(document.getElementsByClassName("oneprice")[i].value);
                 qq++;
         })
         document.getElementById('Grand').innerHTML = moneyformat(sum.toString());

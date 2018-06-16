@@ -1,7 +1,7 @@
 const path = require('path');
 
 exports.client = (req, res) => {
-  res.status(404).render('./layouts/error.html', {
+  res.status(404).render('./layouts/error', {
     layout: 'notfound',
     statusCode: 404,
     errorMessage: 'Page not found',
@@ -9,7 +9,7 @@ exports.client = (req, res) => {
 };
 
 exports.server = (err, req, res, next) => {
-  res.status(500).render('./layouts/error.html', {
+  res.status(500).render('./layouts/error', {
     layout: 'error',
     statusCode: 500,
     errorMessage: 'Internal server error',

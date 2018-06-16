@@ -13,7 +13,7 @@ exports.get =async (req, res) => {
     }
     await Sherkat.find({}).then(async function (res2) {
 
-        res.render('sherkat_list.html', {
+        res.render('sherkat_list', {
             sherkatlist:res2,
             message: {kind: message, content: content},
             csrfToken: req.csrfToken(),

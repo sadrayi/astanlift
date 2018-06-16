@@ -7,13 +7,13 @@ exports.get =async (req, res) => {
     if(req.query.shid)
         await User.findOne({phone:req.query.shid}).then(async function (res3) {
             if(typeof res3 !== 'undefined')
-            res.render('user_add.html', {sherkat:res3,   csrfToken: req.csrfToken(),  activePage: { isAuthenticated:req.isAuthenticated(),user_add: true, title:'افزودن کاربر'} });
+            res.render('user_add', {sherkat:res3,   csrfToken: req.csrfToken(),  activePage: { isAuthenticated:req.isAuthenticated(),user_add: true, title:'افزودن کاربر'} });
             else
-                res.render('user_add.html', {   csrfToken: req.csrfToken(),  activePage: { isAuthenticated:req.isAuthenticated(),user_add: true, title:'افزودن کاربر'} });
+                res.render('user_add', {   csrfToken: req.csrfToken(),  activePage: { isAuthenticated:req.isAuthenticated(),user_add: true, title:'افزودن کاربر'} });
 
         });
     else
-        res.render('user_add.html', {   csrfToken: req.csrfToken(),  activePage: { isAuthenticated:req.isAuthenticated(),user_add: true, title:'افزودن کاربر'} });
+        res.render('user_add', {   csrfToken: req.csrfToken(),  activePage: { isAuthenticated:req.isAuthenticated(),user_add: true, title:'افزودن کاربر'} });
 
 };
 exports.post = async (req, res) => {
@@ -40,7 +40,7 @@ exports.post = async (req, res) => {
                         });
                     Usersave.save(function (err) {
                         if(err)
-                            res.render(user_add.html, {
+                            res.render('user_add' ,{
                                 message:{
                                     kind:"alert-danger",
                                     content:"خطایی در ثبت رخ داده است."
@@ -59,7 +59,7 @@ exports.post = async (req, res) => {
                 }
                 else
                 {
-                    res.render('user_add.html', {message:{kind:"alert-danger",content:"شماره همراه  تکراری می باشد."}, csrfToken: req.csrfToken(),  activePage: { isAuthenticated:req.isAuthenticated(), sherkat_add: true, title:'ثبت شرکت همکار'} });
+                    res.render('user_add', {message:{kind:"alert-danger",content:"شماره همراه  تکراری می باشد."}, csrfToken: req.csrfToken(),  activePage: { isAuthenticated:req.isAuthenticated(), sherkat_add: true, title:'ثبت شرکت همکار'} });
 
                 }
 
@@ -87,7 +87,7 @@ exports.post = async (req, res) => {
                     })
                 }
                 else {
-                    res.render('user_add.html', {
+                    res.render('user_add', {
                         sherkat:req.body,
                         message: {
                             kind: "alert-danger",

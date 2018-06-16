@@ -14,10 +14,12 @@ module.exports = function (app, passport, Account) {
     const invoice_list = require('./invoice_list');
     const teknesian_detail = require('./teknesian_detail');
     const sale_request = require('./sale_request');
+    const tamir_form = require('./tamir_form');
     const calendar = require('./calendar');
     const user_add = require('./user_add');
     const teknesian_add = require('./teknesian_add');
     const invoice_detail = require('./invoice_detail');
+    const payment = require('./payment');
     const operator_add = require('./operator_add');
     const contract_detail = require('./contract_detail');
     const category_list = require('./category_list');
@@ -74,8 +76,13 @@ module.exports = function (app, passport, Account) {
     app.get('/product_add', product_add.get);
     app.get('/pricing_table', pricing_table.get);
     app.get('/sherkat_list', teknesian.get);
+    app.get('/blank', function(req, res) {
+        res.render('blank');
+    });
     app.get('/sherkat_add', sherkat_add.get);
     app.post('/sherkat_add', sherkat_add.save);
+    app.get('/tamirform_add', tamir_form.get);
+    app.post('/tamirform_add', tamir_form.post);
     app.get('/product_category', product_category.get);
     app.get('/category_list', category_list.get);
     app.get('/product_detail', product_detail.get);
@@ -92,6 +99,7 @@ module.exports = function (app, passport, Account) {
     app.get('/teknesian_list', teknesian2.get);
     app.get('/contract_add', contract_add.get);
     app.post('/contract_add', contract_add.post);
+    app.post('/payment', payment.post);
     app.get('/sale_request', sale_request.get);
     app.get('/contracts', contracts.get);
     app.get('/operator', operator.get);

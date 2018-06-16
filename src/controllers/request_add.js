@@ -22,13 +22,13 @@ exports.get =async (req, res) => {
                         teknesian:teknesian,
                         sherkat: res3,
                         csrfToken: req.csrfToken(),
-                        activePage: {isAuthenticated: req.isAuthenticated(), user_add: true, title: 'افزودن کاربر'}
+                        activePage: {isAuthenticated: req.isAuthenticated(), user_add: true, title: 'افزودن درخواست'}
                     });
                 else
                     res.render('requests/request_add', {
                         teknesian:teknesian,
                         csrfToken: req.csrfToken(),
-                        activePage: {isAuthenticated: req.isAuthenticated(), user_add: true, title: 'افزودن کاربر'}
+                        activePage: {isAuthenticated: req.isAuthenticated(), user_add: true, title: 'افزودن درخواست'}
                     });
 
             });
@@ -36,13 +36,14 @@ exports.get =async (req, res) => {
             res.render('requests/request_add', {
                 teknesian:teknesian,
                 csrfToken: req.csrfToken(),
-                activePage: {isAuthenticated: req.isAuthenticated(), user_add: true, title: 'افزودن کاربر'}
+                activePage: {isAuthenticated: req.isAuthenticated(), user_add: true, title: 'افزودن درخواست'}
             });
     });
 };
 
 exports.post = async (req, res) => {
     var body = req.body;
+    body.status='bazdid';
     var addressid;
     if(req.body.sabtkind==="register"){
       if(body.addressid==="0")
@@ -52,6 +53,7 @@ exports.post = async (req, res) => {
                   phone: body.phone,
                   city: body.city,
                   zone: body.zone,
+                  ostan: body.ostan,
                   address: body.address,
               });
           addressSave.save(async function (err,address) {
@@ -79,6 +81,9 @@ exports.post = async (req, res) => {
                       kind: body.kind,
                       requester: body.requester,
                       city: body.city,
+                      ostan: body.ostan,
+                      requestdate: body.requestdate,
+                      status:'bazdid',
                       addressid: address._id,
                       zone: body.zone,
                       address: body.address,
@@ -108,8 +113,7 @@ exports.post = async (req, res) => {
       });}
       else
       {
-          var requestSave = new requestModel(
-                    body);
+          var requestSave = new requestModel(body);
           requestSave.save(async function (err) {
                     if(err)
                         await Teknesian.find({}).then(async function (teknesian) {
@@ -132,16 +136,32 @@ exports.post = async (req, res) => {
     else if(req.body.sabtkind==="update")
     {
         var addressid;
+        var requestsave=                  {
+            phone: req.body.phone,
+            kind: req.body.kind,
+            requester: req.body.requester,
+            requestdate: req.body.requestdate,
+            city: req.body.city,
+            ostan: req.body.ostan,
+            addressid: req.body.addressid,
+            zone: req.body.zone,
+            address: req.body.address,
+            teknesiankind: req.body.teknesiankind,
+            teknesian: req.body.teknesian,
+            comment: req.body.comment,
+        }
         if(body.addressid==="0")
         {
             var addressSave = new Address(
                 {
                     phone: body.phone,
                     city: body.city,
+                    ostan: body.ostan,
                     zone: body.zone,
+                    ostan: body.ostan,
                     address: body.address,
                 });
-            addressSave.save((async function (err) {
+            addressSave.save((async function (err,addressids) {
                 if(err)
                     await Teknesian.find({}).then(async function (teknesian) {
 
@@ -158,26 +178,20 @@ exports.post = async (req, res) => {
                                 title:'ثبت  درخواست'
                             }
                         });});
-
-                req.body.addressid=address.id;
-
-                        requestModel.findOneAndUpdate(req.body._id, req.body, function (err) {
+                requestsave.addressid=addressids._id;
+                        requestModel.findOneAndUpdate({_id:req.body.id},requestsave, function (err) {
                             if (err)
                                 console.log(err);
                             res.redirect('request_list?message=successedit');
-
                         });
-
-
             }));}
         else
+            requestModel.findOneAndUpdate({_id:req.body.id},requestsave, function (err) {
+            if (err)
+                console.log(err);
+            res.redirect('request_list?message=successedit');
 
-                requestModel.findOneAndUpdate(req.body._id, req.body, function (err) {
-                    if (err)
-                        console.log(err);
-                    res.redirect('request_list?message=successedit');
-
-                })
+        })
     }
 
 

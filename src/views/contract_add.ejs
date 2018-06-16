@@ -1,4 +1,4 @@
-<% include ./partials/start.html%>
+<% include ./partials/start%>
 
 <div class="col-md-12 col-sm-12 col-xs-12">
     <div class="x_panel">
@@ -9,7 +9,7 @@
 
             <div class="x_content">
 
-                <form method="post" class="form-horizontal form-label-left">
+                <form method="post" action="/contract_add" class="form-horizontal form-label-left">
 
                 <!-- Tabs -->
                 <div id="wizard_verticle" class="form_wizard wizard_verticle">
@@ -59,23 +59,12 @@
                     <div id="step-11">
 
                             <h2 class="StepTitle">مشخصات قرارداد</h2>
-
-                            <div class="form-group col-md-6 col-sm-6">
-                                <label class="control-label col-md-3 col-sm-3" for="contract_id" disabled="disabled">شماره قرارداد <span
-                                        class="required">*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6">
-                                    <input type="text" id="contract_id" name="contract_id" required="required"
-                                           class="form-control col-md-7 col-xs-12">
-                                </div>
-
-                            </div>
                             <div class="form-group col-md-6 col-sm-6">
                                 <label class="control-label col-md-3 col-sm-3" for="contractdate">تاریخ قرارداد  <span
                                         class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6">
-                                    <input name="contractdate" id="contractdate" class="normal-example form-control col-md-7 col-xs-12"    >
+                                    <input name="contractdate" id="contractdate" <%if(typeof contract!=='undefined'){%>value="<%=contract.contractdate%>"<%}%> class="normal-example form-control col-md-7 col-xs-12"    >
 
                                 </div>
                             </div>
@@ -83,81 +72,81 @@
                             <div class="form-group col-md-6 col-sm-6">
                                 <label for="projectname" class="control-label col-md-3 col-sm-3">نام پروژه</label>
                                 <div class="col-md-6 col-sm-6">
-                                    <input id="projectname" class="form-control col-md-7 col-xs-12" type="text"
+                                    <input id="projectname" <%if(typeof contract!=='undefined'){%>value="<%=contract.projectname%>"<%}%> class="form-control col-md-7 col-xs-12" type="text"
                                            name="projectname">
                                 </div>
                             </div>
                             <div class="form-group col-md-6 col-sm-6">
                                 <label for="codemeli" class="control-label col-md-3 col-sm-3">کدملی (شناسه ملی)</label>
                                 <div class="col-md-6 col-sm-6">
-                                    <input id="codemeli" class="form-control col-md-7 col-xs-12" type="text"
+                                    <input id="codemeli"  <%if(typeof contract!=='undefined'){%>value="<%=contract.codemeli%>"<%}%> class="form-control col-md-7 col-xs-12" type="text"
                                            name="codemeli">
                                 </div>
                             </div>
                             <div class="form-group col-md-6 col-sm-6">
                                 <label for="requester" class="control-label col-md-3 col-sm-3">نام و نام خانوادگی کارفرما</label>
                                 <div class="col-md-6 col-sm-6">
-                                    <input id="requester" class="form-control col-md-7 col-xs-12" type="text" {
+                                    <input id="requester"  <%if(typeof contract!=='undefined'){%>value="<%=contract.requester%>"<%}%> class="form-control col-md-7 col-xs-12" type="text" {
                                            name="requester">
                                 </div>
                             </div>
                             <div class="form-group col-md-6 col-sm-6">
                                 <label for="shenasname" class="control-label col-md-3 col-sm-3">شماره شناسنامه</label>
                                 <div class="col-md-6 col-sm-6">
-                                    <input id="shenasname" class="form-control col-md-7 col-xs-12" type="text"
+                                    <input id="shenasname"  <%if(typeof contract!=='undefined'){%>value="<%=contract.shenasname%>"<%}%> class="form-control col-md-7 col-xs-12" type="text"
                                            name="shenasname">
                                 </div>
                             </div>
                             <div class="form-group col-md-6 col-sm-6">
                                 <label for="fathername" class="control-label col-md-3 col-sm-3">نام پدر </label>
                                 <div class="col-md-6 col-sm-6">
-                                    <input id="fathername" class="form-control col-md-7 col-xs-12" type="text"
+                                    <input id="fathername"  <%if(typeof contract!=='undefined'){%>value="<%=contract.fathername%>"<%}%> class="form-control col-md-7 col-xs-12" type="text"
                                            name="fathername">
                                 </div>
                             </div>
                             <div class="form-group col-md-6 col-sm-6">
                                 <label for="birthdate" class="control-label col-md-3 col-sm-3">تاریخ تولد</label>
                                 <div class="col-md-6 col-sm-6">
-                                    <input id="birthdate" class="normal-example date-picker form-control col-md-7 col-xs-12"
+                                    <input id="birthdate"  <%if(typeof contract!=='undefined'){%>value="<%=contract.birthdate%>"<%}%> class="normal-example date-picker form-control col-md-7 col-xs-12"
                                            name="birthdate">
                                 </div>
                             </div>
                             <div class="form-group col-md-6 col-sm-6">
                                 <label for="tawalodcity" class="control-label col-md-3 col-sm-3">محل تولد</label>
                                 <div class="col-md-6 col-sm-6">
-                                    <input id="tawalodcity" class="form-control col-md-7 col-xs-12" type="text"
+                                    <input id="tawalodcity"  <%if(typeof contract!=='undefined'){%>value="<%=contract.tawalodcity%>"<%}%> class="form-control col-md-7 col-xs-12" type="text"
                                            name="tawalodcity">
                                 </div>
                             </div>
                             <div class="form-group col-md-6 col-sm-6">
                                 <label for="codeposti" class="control-label col-md-3 col-sm-3">کد پستی </label>
                                 <div class="col-md-6 col-sm-6">
-                                    <input id="codeposti" class="form-control col-md-7 col-xs-12" type="text"
+                                    <input id="codeposti"  <%if(typeof contract!=='undefined'){%>value="<%=contract.codeposti%>"<%}%> class="form-control col-md-7 col-xs-12" type="text"
                                            name="codeposti">
                                 </div>
                             </div>
                             <div class="form-group col-md-6 col-sm-6">
                                 <label for="phone" class="control-label col-md-3 col-sm-3">شماره همراه </label>
                                 <div class="col-md-6 col-sm-6">
-                                    <input id="phone" class="form-control col-md-7 col-xs-12" type="text"
+                                    <input id="phone"  <%if(typeof contract!=='undefined'){%>value="<%=contract.phone%>"<%}%> class="form-control col-md-7 col-xs-12" type="text"
                                            name="phone">
                                 </div>
                             </div>
                             <div class="form-group col-md-6 col-sm-6">
                                 <label for="phone2" class="control-label col-md-3 col-sm-3">تلفن ۲ </label>
                                 <div class="col-md-6 col-sm-6">
-                                    <input id="phone2" class="form-control col-md-7 col-xs-12" type="text"
+                                    <input id="phone2"  <%if(typeof contract!=='undefined'){%>value="<%=contract.phone2%>"<%}%> class="form-control col-md-7 col-xs-12" type="text"
                                            name="phone2">
                                 </div>
                             </div>
                             <div class="form-group col-md-6 col-sm-6">
                                 <label for="buildingmanager" class="control-label col-md-3 col-sm-3">مسئول ساختمان </label>
                                 <div class="col-md-6 col-sm-6">
-                                    <input id="buildingmanager" class="form-control col-md-7 col-xs-12" type="text"
+                                    <input id="buildingmanager"  <%if(typeof contract!=='undefined'){%>value="<%=contract.buildingmanager%>"<%}%> class="form-control col-md-7 col-xs-12" type="text"
                                            name="buildingmanager">
                                 </div>
                             </div>
-                            <input id="sabtkind" name="sabtkind" class="hidden"          <% if (typeof sherkat !== 'undefined'){%> value="update" <% } else {%> value="register" <%}%>
+                            <input id="sabtkind" name="sabtkind"   class="hidden"          <% if (typeof sherkat !== 'undefined'){%> value="update" <% } else {%> value="register" <%}%>
                             >        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
 
 
@@ -167,36 +156,36 @@
                         <div class="form-group col-md-6 col-sm-6">
                             <label for="ostan" class="control-label col-md-3 col-sm-3">استان</label>
                             <div class="col-md-6 col-sm-6">
-                                <input id="ostan" class="form-control col-md-7 col-xs-12" type="text"
+                                <input id="ostan" readonly <%if(typeof contract!=='undefined'){%>value="<%=contract.ostan%>"<%}%> class="form-control col-md-7 col-xs-12" type="text"
                                        name="ostan">
                             </div>
                         </div>
                         <div class="form-group col-md-6 col-sm-6">
                             <label for="city" class="control-label col-md-3 col-sm-3">شهر</label>
                             <div class="col-md-6 col-sm-6">
-                                <input id="city" class="form-control col-md-7 col-xs-12" type="text"
+                                <input id="city" readonly <%if(typeof contract!=='undefined'){%>value="<%=contract.city%>"<%}%> class="form-control col-md-7 col-xs-12" type="text"
                                        name="city">
                             </div>
                         </div>
                         <div class="form-group col-md-6 col-sm-6">
                             <label for="zone" class="control-label col-md-3 col-sm-3">منطقه </label>
                             <div class="col-md-6 col-sm-6">
-                                <input id="zone" class="form-control col-md-7 col-xs-12" type="text"
+                                <input id="zone" readonly <%if(typeof contract!=='undefined'){%>value="<%=contract.zone%>"<%}%> class="form-control col-md-7 col-xs-12" type="text"
                                        name="zone">
                             </div>
                         </div>
                         <div class="form-group col-md-6 col-sm-6">
                             <label for="tedadvahed" class="control-label col-md-3 col-sm-3">تعداد واحد  </label>
                             <div class="col-md-6 col-sm-6">
-                                <input id="tedadvahed" class="form-control col-md-7 col-xs-12" type="text"
+                                <input id="tedadvahed"  <%if(typeof contract!=='undefined'){%>value="<%=contract.tedadvahed%>"<%}%>  class="form-control col-md-7 col-xs-12" type="text"
                                        name="tedadvahed">
                             </div>
                         </div>
                         <div class="form-group col-md-6 col-sm-6">
                             <label for="address" class="control-label col-md-3 col-sm-3">توضیحات آدرس </label>
                             <div class="col-md-6 col-sm-6">
-                                <input id="address" class="form-control col-md-7 col-xs-12" type="text"
-                                       name="address">
+                                <input id="address" readonly <%if(typeof contract!=='undefined'){%>value="<%=contract.address%>"<%}%> class="form-control col-md-7 col-xs-12" type="text" name="address">
+                                <input name="addressid" hidden <%if(typeof contract!=='undefined'){%>value="<%=contract.addressid%>"<%}%>>
                             </div>
                         </div>
 
@@ -206,7 +195,7 @@
                         <div class="form-group col-md-6 col-sm-6">
                             <label for="asansorcount" class="control-label col-md-3 col-sm-3">تعداد آسانسور</label>
                             <div class="col-md-6 col-sm-6">
-                                <input id="asansorcount" class="form-control col-md-7 col-xs-12" type="text"
+                                <input id="asansorcount"  <%if(typeof contract!=='undefined'){%>value="<%=contract.asansorcount%>"<%}%> class="form-control col-md-7 col-xs-12" type="text"
                                        name="asansorcount">
                             </div>
                         </div>
@@ -241,7 +230,7 @@
                         <div class="form-group col-md-6 col-sm-6">
                             <label for="stopcount" class="control-label col-md-3 col-sm-3">تعداد توقف</label>
                             <div class="col-md-6 col-sm-6">
-                                <input id="stopcount" class="form-control col-md-7 col-xs-12" type="text"
+                                <input id="stopcount"  <%if(typeof contract!=='undefined'){%>value="<%=contract.stopcount%>"<%}%> class="form-control col-md-7 col-xs-12" type="text"
                                        name="stopcount">
                             </div>
                         </div>
@@ -249,7 +238,7 @@
                         <div class="form-group col-md-6 col-sm-6">
                             <label for="asansorzarfit" class="control-label col-md-3 col-sm-3">ظرفیت </label>
                             <div class="col-md-6 col-sm-6">
-                                <input id="asansorzarfit" class="form-control col-md-7 col-xs-12" type="text"
+                                <input id="asansorzarfit"  <%if(typeof contract!=='undefined'){%>value="<%=contract.asansorzarfit%>"<%}%> class="form-control col-md-7 col-xs-12" type="text"
                                        name="asansorzarfit">
                             </div>
                         </div>
@@ -325,7 +314,7 @@
                         <div class="form-group col-md-6 col-sm-6">
                             <label for="salenasb" class="control-label col-md-3 col-sm-3"> سال نصب</label>
                             <div class="col-md-6 col-sm-6">
-                                <input id="salenasb" class="form-control col-md-7 col-xs-12 single" type="text"
+                                <input id="salenasb"  <%if(typeof contract!=='undefined'){%>value="<%=contract.salenasb%>"<%}%> class="form-control col-md-7 col-xs-12 single" type="text"
                                         name="salenasb">
 
                             </div>
@@ -343,7 +332,7 @@
                         <div class="form-group col-md-6 col-sm-6">
                             <label for="standarddate" class="control-label col-md-3 col-sm-3">تاریخ اعتبار</label>
                             <div class="col-md-6 col-sm-6">
-                                <input id="standarddate" class="normal-example form-control col-md-7 col-xs-12 single" type="text"
+                                <input id="standarddate" <%if(typeof contract!=='undefined'){%>value="<%=contract.standarddate%>"<%}%>  class="normal-example form-control col-md-7 col-xs-12 single" type="text"
                                         name="standarddate">
 
                             </div>
@@ -355,23 +344,16 @@
                         <div class="form-group col-md-6 col-sm-6">
                             <label for="contractduration" class="control-label col-md-3 col-sm-3">تاریخ شروع</label>
                             <div class="col-md-6 col-sm-6">
-                                <input id="contractduration" class="normal-example form-control col-md-7 col-xs-12 single" type="text"
+                                <input id="contractduration"  <%if(typeof contract!=='undefined'){%>value="<%=contract.contractduration%>"<%}%> class="normal-example form-control col-md-7 col-xs-12 single" type="text"
                                        name="contractduration">
 
                             </div>
                         </div>
-                        <div class="form-group col-md-6 col-sm-6">
-                            <label for="contractenddate" class="control-label col-md-3 col-sm-3">تاریخ پایان</label>
-                            <div class="col-md-6 col-sm-6">
-                                <input id="contractenddate" class="normal-example form-control col-md-7 col-xs-12 single" type="text"
-                                       name="contractenddate">
 
-                            </div>
-                        </div>
                         <div class="form-group col-md-6 col-sm-6">
                             <label for="garantyenddate" class="control-label col-md-3 col-sm-3">تاریخ پایان گارانتی</label>
                             <div class="col-md-6 col-sm-6">
-                                <input id="garantyenddate" class="normal-example form-control col-md-7 col-xs-12 single" type="text"
+                                <input id="garantyenddate" <%if(typeof contract!=='undefined'){%>value="<%=contract.garantyenddate%>"<%}%>  class="normal-example form-control col-md-7 col-xs-12 single" type="text"
                                        name="garantyenddate">
 
                             </div>
@@ -387,7 +369,7 @@
                         <div class="form-group col-md-6 col-sm-6">
                             <label for="firstservicedate" class="control-label col-md-3 col-sm-3">تاریخ سرویس اولیه</label>
                             <div class="col-md-6 col-sm-6">
-                                <input id="firstservicedate" class="normal-example form-control col-md-7 col-xs-12 single" type="text"
+                                <input id="firstservicedate"  <%if(typeof contract!=='undefined'){%>value="<%=contract.firstservicedate%>"<%}%> class="normal-example form-control col-md-7 col-xs-12 single" type="text"
                                        name="firstservicedate">
 
                             </div>
@@ -438,7 +420,7 @@
                         <div class="form-group col-md-6 col-sm-6">
                             <label for="bimestartdate" class="control-label col-md-3 col-sm-3">تاریخ شروع بیمه</label>
                             <div class="col-md-6 col-sm-6">
-                                <input id="bimestartdate" class="normal-example form-control col-md-7 col-xs-12 single" type="text"
+                                <input id="bimestartdate"  <%if(typeof contract!=='undefined'){%>value="<%=contract.bimestartdate%>"<%}%> class="normal-example form-control col-md-7 col-xs-12 single" type="text"
                                        name="bimestartdate">
 
                             </div>
@@ -446,7 +428,7 @@
                         <div class="form-group col-md-6 col-sm-6">
                             <label for="bimeenddate" class="control-label col-md-3 col-sm-3">تاریخ پایان بیمه</label>
                             <div class="col-md-6 col-sm-6">
-                                <input id="bimeenddate" class="normal-example form-control col-md-7 col-xs-12 single" type="text"
+                                <input id="bimeenddate"  <%if(typeof contract!=='undefined'){%>value="<%=contract.bimeenddate%>"<%}%> class="normal-example form-control col-md-7 col-xs-12 single" type="text"
                                        name="bimeenddate">
 
                             </div>
@@ -454,7 +436,7 @@
                         <div class="form-group col-md-6 col-sm-6">
                             <label for="bimecost" class="control-label col-md-3 col-sm-3">هزینه بیمه</label>
                             <div class="col-md-6 col-sm-6">
-                                <input id="bimecost" class="form-control col-md-7 col-xs-12 single" type="text"
+                                <input id="bimecost"  <%if(typeof contract!=='undefined'){%>value="<%=contract.bimecost%>"<%}%> class="form-control col-md-7 col-xs-12 single" type="text"
                                        name="bimecost">
 
                             </div>
@@ -462,7 +444,7 @@
                         <div class="form-group col-md-6 col-sm-6">
                             <label for="bimecompany" class="control-label col-md-3 col-sm-3">شرکت بیمه گر</label>
                             <div class="col-md-6 col-sm-6">
-                                <input id="bimecompany" class="form-control col-md-7 col-xs-12 single" type="text"
+                                <input id="bimecompany"  <%if(typeof contract!=='undefined'){%>value="<%=contract.bimecompany%>"<%}%> class="form-control col-md-7 col-xs-12 single" type="text"
                                        name="bimecompany">
 
                             </div>
@@ -470,7 +452,7 @@
                         <div class="form-group col-md-6 col-sm-6">
                             <label for="bimenumber" class="control-label col-md-3 col-sm-3">شماره بیمه </label>
                             <div class="col-md-6 col-sm-6">
-                                <input id="bimenumber" class="form-control col-md-7 col-xs-12 single" type="text"
+                                <input id="bimenumber"  <%if(typeof contract!=='undefined'){%>value="<%=contract.bimenumber%>"<%}%> class="form-control col-md-7 col-xs-12 single" type="text"
                                        name="bimenumber">
 
                             </div>
@@ -481,7 +463,7 @@
                             </label>
 
                             <div class="col-md-9 col-sm-9 col-xs-12">
-                                <select id="bimepaymethod" class="form-control col-md-7 col-xs-12 single" type="text"
+                                <select id="bimepaymethod"  <%if(typeof contract!=='undefined'){%>value="<%=contract.bimepaymethod%>"<%}%> class="form-control col-md-7 col-xs-12 single" type="text"
                                        name="bimepaymethod">
                                     <option value="karfarma">به عهده کارفرما</option>
                                     <option value="peimankar">به عهده پیمانکار</option>
@@ -495,7 +477,7 @@
                         <div class="form-group col-md-6 col-sm-6">
                             <label for="monthlycost" class="control-label col-md-3 col-sm-3">مبلغ ماهیانه</label>
                             <div class="col-md-6 col-sm-6">
-                                <input id="monthlycost" class="form-control col-md-7 col-xs-12 single" type="text"
+                                <input id="monthlycost"  <%if(typeof contract!=='undefined'){%>value="<%=contract.monthlycost%>"<%}%> class="form-control col-md-7 col-xs-12 single" type="text"
                                        name="monthlycost">
 
                             </div>
@@ -503,7 +485,7 @@
                         <div class="form-group col-md-6 col-sm-6">
                             <label for="totalcost" class="control-label col-md-3 col-sm-3">مبلغ کل</label>
                             <div class="col-md-6 col-sm-6">
-                                <input id="totalcost" class="form-control col-md-7 col-xs-12 single" type="text"
+                                <input id="totalcost"  <%if(typeof contract!=='undefined'){%>value="<%=contract.totalcost%>"<%}%> class="form-control col-md-7 col-xs-12 single" type="text"
                                        name="totalcost">
 
                             </div>
@@ -524,7 +506,7 @@
                         <div class="form-group col-md-6 col-sm-6">
                             <label for="mandeavalie" class="control-label col-md-3 col-sm-3">مانده اولیه</label>
                             <div class="col-md-6 col-sm-6">
-                                <input id="mandeavalie" class="form-control col-md-7 col-xs-12 single" type="text"
+                                <input id="mandeavalie"  <%if(typeof contract!=='undefined'){%>value="<%=contract.mandeavalie%>"<%}%> class="form-control col-md-7 col-xs-12 single" type="text"
                                        name="mandeavalie">
 
                             </div>
@@ -546,7 +528,7 @@
                         <div class="form-group col-md-6 col-sm-6">
                             <label for="contractmoaref" class="control-label col-md-3 col-sm-3">معرف قرارداد</label>
                             <div class="col-md-6 col-sm-6">
-                                <input id="contractmoaref" class="form-control col-md-7 col-xs-12 single" type="text"
+                                <input id="contractmoaref"  <%if(typeof contract!=='undefined'){%>value="<%=contract.contractmoaref%>"<%}%> class="form-control col-md-7 col-xs-12 single" type="text"
                                        name="contractmoaref">
 
                             </div>
@@ -554,16 +536,36 @@
                         <div class="form-group col-md-6 col-sm-6">
                             <label for="contractpursant" class="control-label col-md-3 col-sm-3">در صد پورسانت</label>
                             <div class="col-md-6 col-sm-6">
-                                <input id="contractpursant" class="form-control col-md-7 col-xs-12 single" type="number"
+                                <input id="contractpursant"  <%if(typeof contract!=='undefined'){%>value="<%=contract.contractpursant%>"<%}%> class="form-control col-md-7 col-xs-12 single" type="number"
                                        name="contractpursant">
 
                             </div>
                         </div>
-                        <div class="form-group col-md-6 col-sm-6">
-                            <label for="teknesian" class="control-label col-md-3 col-sm-3">سرویسکار</label>
-                            <div class="col-md-6 col-sm-6">
-                                <input id="teknesian" name="teknesian" class="form-control col-md-7 col-xs-12 single" type="text">
-
+                        <div class="form-group col-md-4 col-sm-4 ">
+                            <label class="col-md-5 col-sm-5 col-xs-12 control-label">تخصیص تکنسین
+                                <br>
+                            </label>
+                            <div class="col-md-7 col-sm-7 col-xs-12">
+                                <div class="radio">
+                                    <label>
+                                        <select class=" maliat"  name="teknesiankind"  id="teknesiankind" onchange="onmanualteknesian()">
+                                            <option value="0">دستی</option>
+                                            <option value="1" selected>خودکار</option>
+                                        </select>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-8 col-sm-8 ">
+                            <label class="col-md-3 col-sm-3 col-xs-12 control-label">تکنسین
+                                <span class="required">*</span>
+                            </label>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <select disabled class="js-example-basic-single form-control col-md-7 col-xs-12" id="teknesian" name="teknesian">
+                                    <%teknesian.forEach(function (tek){%>
+                                    <option value="<%=tek.id%>"><%=tek.lastname%></option>
+                                    <%})%>
+                                </select>
 
                             </div>
                         </div>
@@ -584,7 +586,7 @@
 </main>
 
 </div>
-<% include ./partials/footer.html%>
+<% include ./partials/footer%>
 
 
 
@@ -711,6 +713,32 @@
             "responsive": true
         });
     });
+</script>
+<script src="../vendors/select2/dist/js/select2.full.js"></script>
+
+<link href="../css/select2.min.css" rel="stylesheet">
+<script>
+    $(document).ready(function() {
+        $('.js-example-basic-single').select2();
+        $('.js-example-basic').select2({  tags: true});
+
+    });
+</script>
+<script>
+    function onmanualteknesian() {
+        if($('#teknesiankind').val()==='0')
+        {
+            console.log("dasti")
+            $('#teknesian').attr('disabled',false);
+        }
+        else
+        {
+            console.log("auto")
+            $('#teknesian').attr('disabled',true);
+        }
+
+
+    }
 </script>
 </div>
 </div>

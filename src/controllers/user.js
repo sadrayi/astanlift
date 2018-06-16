@@ -13,7 +13,7 @@ exports.get =async (req, res) => {
     }
     await User.find({}).then(async function (res2) {
 
-        res.render('user_list.html', {
+        res.render('user_list', {
             userlist:res2,
             message: {kind: message, content: content},
             csrfToken: req.csrfToken(),

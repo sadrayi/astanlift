@@ -7,11 +7,11 @@ exports.get =async (req, res) => {
     if(req.query.shid)
     await Teknesian.findOne({codemeli:req.query.shid}).then(async function (res3) {
 
-        res.render('teknesian_add.html', {sherkat:res3,   csrfToken: req.csrfToken(),  activePage: { isAuthenticated:req.isAuthenticated(),teknesian_add: true, title:'افزودن تکنسین'} });
+        res.render('teknesian_add', {sherkat:res3,   csrfToken: req.csrfToken(),  activePage: { isAuthenticated:req.isAuthenticated(),teknesian_add: true, title:'افزودن تکنسین'} });
 
     });
     else
-        res.render('teknesian_add.html', {   csrfToken: req.csrfToken(),  activePage: { isAuthenticated:req.isAuthenticated(),teknesian_add: true, title:'افزودن تکنسین'} });
+        res.render('teknesian_add', {   csrfToken: req.csrfToken(),  activePage: { isAuthenticated:req.isAuthenticated(),teknesian_add: true, title:'افزودن تکنسین'} });
 
 };
 exports.post = async (req, res) => {
@@ -55,7 +55,7 @@ exports.post = async (req, res) => {
                         });
                     Teknesiansave.save(function (err) {
                         if(err)
-                                res.render(teknesian_add.html, {
+                                res.render('teknesian_add', {
                                     message:{
                                         kind:"alert-danger",
                                         content:"خطایی در ثبت رخ داده است."
@@ -74,7 +74,7 @@ exports.post = async (req, res) => {
                 }
                 else
                 {
-                        res.render(teknesian_add.html, {message:{kind:"alert-danger",content:"کدملی  تکراری می باشد."}, csrfToken: req.csrfToken(),  activePage: { isAuthenticated:req.isAuthenticated(), sherkat_add: true, title:'ثبت شرکت همکار'} });
+                        res.render('teknesian_add', {message:{kind:"alert-danger",content:"کدملی  تکراری می باشد."}, csrfToken: req.csrfToken(),  activePage: { isAuthenticated:req.isAuthenticated(), sherkat_add: true, title:'ثبت شرکت همکار'} });
 
                 }
 
@@ -124,7 +124,7 @@ exports.post = async (req, res) => {
                         });
                     Teknesiansave.save(function (err) {
                         if(err)
-                            res.render(teknesian_add.html, {
+                            res.render('teknesian_add', {
                                 message:{
                                     kind:"alert-danger",
                                     content:"خطایی در ثبت رخ داده است."
@@ -143,7 +143,7 @@ exports.post = async (req, res) => {
                 }
                 else
                 {
-                    res.render(teknesian_add.html, {message:{kind:"alert-danger",content:"کدملی  تکراری می باشد."}, csrfToken: req.csrfToken(),  activePage: { isAuthenticated:req.isAuthenticated(), sherkat_add: true, title:'ثبت شرکت همکار'} });
+                    res.render('teknesian_add', {message:{kind:"alert-danger",content:"کدملی  تکراری می باشد."}, csrfToken: req.csrfToken(),  activePage: { isAuthenticated:req.isAuthenticated(), sherkat_add: true, title:'ثبت شرکت همکار'} });
 
                 }
 

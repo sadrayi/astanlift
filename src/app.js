@@ -27,7 +27,7 @@ mongoose.Promise = global.Promise;
 
 // set up view engine
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'html');
+app.set('view engine', 'ejs');
 app.disable('x-powered-by');
 app.use(compression());
 //// etesal be database ///
@@ -87,7 +87,6 @@ passport.deserializeUser(Account.deserializeUser());
 //////// end //////////
 
 ///// motor view
-app.engine('html', require('ejs').renderFile);
 ///// favicon
 app.use(favicon(path.join(__dirname, '..', 'public', 'favicon.ico')));
 ///// directory public ( static )

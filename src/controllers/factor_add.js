@@ -37,7 +37,10 @@ exports.post = async(req, res) => {
     await factorSave.save().then(function (err) {
         if(err)
             console.log(err);
-        res.redirect('request_list?message=successaddfactor');
-
+        requestModel.findOneAndUpdate({_id:req.body.requestid},{$set:{status:"factoradded"}}, function (err) {
+            if(err)
+                console.log(err);
+            res.redirect('request_list?message=successaddfactor');
+        });
     })
 };
