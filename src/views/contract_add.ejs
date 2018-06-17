@@ -65,7 +65,7 @@
                                 </label>
                                 <div class="col-md-6 col-sm-6">
                                     <input name="contractdate" id="contractdate" <%if(typeof contract!=='undefined'){%>value="<%=contract.contractdate%>"<%}%> class="normal-example form-control col-md-7 col-xs-12"    >
-
+                                    <input name="requestid" hidden <%if(typeof contract!=='undefined'){%>value="<%=contract.requestid%>"<%}%>>
                                 </div>
                             </div>
 
@@ -515,7 +515,7 @@
 
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" class="flat" name="arzeshafzude"
+                                        <input type="checkbox" value="1" class="flat" name="arzeshafzude"
                                               > ارزش افزوده محاسبه شود
                                     </label>
                                 </div>
@@ -583,7 +583,7 @@
 </div>
 </div>
 </div>
-</main>
+
 
 </div>
 <% include ./partials/footer%>
@@ -739,9 +739,6 @@
 
 
     }
-</script>
-</div>
-</div>
-</body>
+</script></body>
 </html>
 

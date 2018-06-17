@@ -9,20 +9,25 @@
         <%}%>
 <div class="x_content">
     <br>
-    <form method="post" id="form" data-parsley-validate="" class="form-horizontal form-label-left" novalidate="">
+    <form method="post" action="request_add" id="form" data-parsley-validate="" class="form-horizontal form-label-left" novalidate="">
 
         <div class="form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="kind">نوع درخواست
                 <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
+                <%if(kind===null){%>
                 <select id="kind" name="kind" required="required" class="form-control col-md-7 col-xs-12" type="text">
                     <option <% if (typeof sherkat !== 'undefined'){ %>  <% if ( sherkat.kind === 'فروش آسانسور' ) { %> selected <% }} %> >فروش آسانسور</option>
                     <option <% if (typeof sherkat !== 'undefined'){ %>  <% if ( sherkat.kind === 'عقد قرارداد سرویس ماهیانه' ) { %> selected <% }} %> >عقد قرارداد سرویس ماهیانه</option>
                     <option <% if (typeof sherkat !== 'undefined'){ %>  <% if ( sherkat.kind === 'درخواست تعمیر' ) { %> selected <% }} %>>درخواست تعمیر</option>
                     <option <% if (typeof sherkat !== 'undefined'){ %>  <% if ( sherkat.kind === 'درخواست استاندارد' ) { %> selected <% }} %>>درخواست استاندارد</option>
                     <option <% if (typeof sherkat !== 'undefined'){ %>  <% if ( sherkat.kind === 'درخواست مشاوره و نظرات' ) { %> selected <% }} %>>درخواست مشاوره و نظرات</option>
+                    <option <% if (typeof sherkat !== 'undefined'){ %>  <% if ( sherkat.kind === 'درخواست پشتیبانی اداری' ) { %> selected <% }} %>>درخواست پشتیبانی اداری</option>
                 </select>
+                <%}else{%>
+                <input id="kind" name="kind" readonly value="<%=kind%>" required="required" class="form-control col-md-7 col-xs-12" type="text">
+                <%}%>
             </div>
         </div>
         <div class="form-group">
@@ -157,7 +162,7 @@
 </div>
 </div>
 </div>
-</main>
+
 
 </div>
 <% include ../partials/footer%>
@@ -359,8 +364,5 @@
     }
 </script>
 <!-- CSS file -->
-<link rel="stylesheet" href="../css/easy-autocomplete.min.css">
-</div>
-</div>
-</body>
+<link rel="stylesheet" href="../css/easy-autocomplete.min.css"></body>
 </html>

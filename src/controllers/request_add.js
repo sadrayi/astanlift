@@ -12,13 +12,34 @@ Teknesian = require('../model/teknesian');
 Address = require('../model/address');
 requestModel = require('../model/request');
 exports.get =async (req, res) => {
-    var body=req.query;
+    display(req, res,null);
+};
+exports.nezarat =async (req, res) => {
+    display(req, res,'درخواست مشاوره و نظرات');
+};
+exports.standard =async (req, res) => {
+    display(req, res,'درخواست استاندارد');
+};
+exports.contract =async (req, res) => {
+    display(req, res,'عقد قرارداد سرویس ماهیانه');
+};
+exports.repair =async (req, res) => {
+    display(req, res,'درخواست تعمیر');
+};
+exports.poshtibani =async (req, res) => {
+    display(req, res,'درخواست پشتیبانی اداری');
+};
+exports.asansorsale =async (req, res) => {
+    display(req, res,'فروش آسانسور');
+};
+var display=async function(req,res,kind){
     await Teknesian.find({}).then(async function (teknesian) {
 
         if (req.query.shid)
             await requestModel.findOne({_id: req.query.shid}).then(async function (res3) {
                 if (typeof res3 !== 'undefined')
                     res.render('requests/request_add', {
+                        kind:kind,
                         teknesian:teknesian,
                         sherkat: res3,
                         csrfToken: req.csrfToken(),
@@ -27,6 +48,7 @@ exports.get =async (req, res) => {
                 else
                     res.render('requests/request_add', {
                         teknesian:teknesian,
+                        kind:kind,
                         csrfToken: req.csrfToken(),
                         activePage: {isAuthenticated: req.isAuthenticated(), user_add: true, title: 'افزودن درخواست'}
                     });
@@ -35,13 +57,34 @@ exports.get =async (req, res) => {
         else
             res.render('requests/request_add', {
                 teknesian:teknesian,
+                kind:kind,
                 csrfToken: req.csrfToken(),
                 activePage: {isAuthenticated: req.isAuthenticated(), user_add: true, title: 'افزودن درخواست'}
             });
     });
 };
-
 exports.post = async (req, res) => {
+    switch(req.body.kind){
+        case 'درخواست مشاوره و نظرات':
+            redirecturl='nezarat_list';
+            break;
+        case 'درخواست استاندارد':
+            redirecturl='standard_list';
+            break;
+        case 'عقد قرارداد سرویس ماهیانه':
+            redirecturl='contract_list';
+            break;
+        case 'درخواست تعمیر':
+            redirecturl='repair_list';
+            break;
+        case 'درخواست پشتیبانی اداری':
+            redirecturl='poshtibani_list';
+            break;
+        case 'فروش آسانسور':
+            redirecturl='asansrsale_list';
+            break;
+    }
+
     var body = req.body;
     body.status='bazdid';
     var addressid;
@@ -108,7 +151,7 @@ exports.post = async (req, res) => {
                               title:'ثبت  درخواست'
                           }
                       });});
-                  res.redirect('request_list?message=successadd');
+                  res.redirect(redirecturl+'?message=successadd');
               });
       });}
       else
@@ -131,7 +174,7 @@ exports.post = async (req, res) => {
                                 title:'ثبت  درخواست'
                             }
                         });});
-                    res.redirect('request_list?message=successadd');
+                    res.redirect(redirecturl+'?message=successadd');
         });}}
     else if(req.body.sabtkind==="update")
     {
@@ -182,14 +225,14 @@ exports.post = async (req, res) => {
                         requestModel.findOneAndUpdate({_id:req.body.id},requestsave, function (err) {
                             if (err)
                                 console.log(err);
-                            res.redirect('request_list?message=successedit');
+                            res.redirect(redirecturl+'?message=successedit');
                         });
             }));}
         else
             requestModel.findOneAndUpdate({_id:req.body.id},requestsave, function (err) {
             if (err)
                 console.log(err);
-            res.redirect('request_list?message=successedit');
+            res.redirect(redirecturl+'?message=successedit');
 
         })
     }

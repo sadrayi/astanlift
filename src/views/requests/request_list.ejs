@@ -16,6 +16,7 @@
                        cellspacing="0" width="100%">                         <thead>
                     <tr class="headings">
 
+                        <th class="">شماره درخواست</th>
                         <th class="">نوع درخواست</th>
                         <th class=" ">تاریخ مراجعه</th>
                         <th class=" ">نام درخواست دهنده</th>
@@ -31,6 +32,7 @@
                     <% if(typeof sherkatlist!=='undefined'){%>
                     <% for (i=0;i< sherkatlist.length;i++){%>
                     <tr>
+                        <td><%=sherkatlist[i]._id%></td>
                         <td><%=sherkatlist[i].kind%></td>
                         <td class="jalali"><%if (typeof sherkatlist[i].requestdate!=='undefined'){ %><%=sherkatlist[i].requestdate%><%}else {%><%=sherkatlist[i].created%><%}%></td>
                         <td><%=sherkatlist[i].requester%></td>
@@ -165,7 +167,7 @@
 </div>
 </div>
 </div>
-</main>
+
 
 </div>
 <% include ../partials/footer%>
@@ -309,9 +311,6 @@
         });
     });
 </script>
-<script src="../js/persianumber.js"></script>
-</div>
-</div>
-</body>
+<script src="../js/persianumber.js"></script></body>
 </html>
 

@@ -27,6 +27,7 @@ exports.post = async(req, res) => {
         arzeshafzude:  body.arzeshafzude,
         title: body.title,
         percost:body.percost,
+        factordate:new Date(),
         quantity:body.quantity,
         comment:body.comment,
         factorcount:body.factorcount,
