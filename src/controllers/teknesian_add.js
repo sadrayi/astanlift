@@ -48,8 +48,7 @@ exports.post = async (req, res) => {
                             phone: req.body.phone,
                             profile_pic:picname,
                             birthdate: birthdate,
-                            servicekar: req.body.servicekar,
-                            tamirkar: req.body.tamirkar,
+                            type: req.body.type,
                             sherkatsabtno:"1",
                             about: req.body.about,
                         });
@@ -117,8 +116,7 @@ exports.post = async (req, res) => {
                             address: req.body.address,
                             phone: req.body.phone,
                             birthdate: birthdate,
-                            servicekar: req.body.servicekar,
-                            tamirkar: req.body.tamirkar,
+                            type: req.body.type,
                             sherkatsabtno:"1",
                             about: req.body.about,
                         });

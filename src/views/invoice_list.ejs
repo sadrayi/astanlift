@@ -29,17 +29,17 @@
                     <td><%=factorlist[i].factorcount%></td>
                     <%if(typeof factorlist[i].status!=='undefined'){%>
                     <%if(factorlist[i].status==='paid'){%>
-                    <td><button type="button" class="btn btn-success">پرداخت شده</button></td>
-                    <td><a href="invoice_detail" type="button" class="btn btn-success"> مشاهده</a></td>
+                    <td class="success">پرداخت شده</td>
+                    <td><a href="invoice_detail?id=<%=factorlist[i]._id%>" type="button" class="btn btn-success"> مشاهده</a></td>
                     <%}else if(factorlist[i].status==='cancelled'){%>
-                    <td><button type="button" class="btn btn-danger">لغو شده</button></td>
-                    <td><a href="invoice_detail" type="button" class="btn btn-success"> مشاهده</a></td>
+                    <td class="normal">لغو شده</td>
+                    <td><a href="invoice_detail?id=<%=factorlist[i]._id%>" type="button" class="btn btn-success"> مشاهده</a></td>
                     <%}}else{%>
-                    <td><button type="button" class="btn btn-warning">در انتظار پرداخت</button></td>
+                    <td class="danger">در انتظار پرداخت</td>
                     <td>
-                        <button type="button" class="btn btn-danger">لغو</button>
-                        <button type="button" class="btn btn-success"> ویرایش</button>
+                        <a href="factor_add?shid=<%=factorlist[i]._id%>" type="button" class="btn btn-success"> ویرایش</a>
                         <a data-target=".pay-<%=factorlist[i]._id%>" data-toggle="modal" type="button" class="btn btn-success"> پرداخت</a>
+                        <a data-target=".cancel-<%=factorlist[i]._id%>" data-toggle="modal" type="button" class="btn btn-danger"> لغو</a>
                         <div class="modal fade pay-<%=factorlist[i]._id%>" tabindex="-1" role="dialog" aria-hidden="true">
                             <div class="modal-dialog modal-lg">
                                 <form method="post" action="../payment">
@@ -102,13 +102,18 @@
                                     <h4 class="modal-title" id="myModalLabel">لغو درخواست شماره <%=factorlist[i]._id%></h4>
                                 </div>
                                 <div class="modal-body">
-                                    <h4>آیا از لغو این درخواست مطمئن هستید ؟</h4>
+                                    <h4>آیا از لغو این فاکتور مطمئن هستید ؟</h4>
                                     <p><div class=" form-group has-feedback">
                                     </div></p>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">بستن</button>
-                                    <button type="button" class="btn btn-primary">لغو درخواست</button>
+                                    <form action="invoice_cancell" method="post">
+                                        <input hidden name="_id" value="<%=factorlist[i]._id%>">
+                                        <input hidden name="kind" value="<%=factorlist[i].requestkind%>">
+                                        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">بستن</button>
+                                        <button type="submit" class="btn btn-primary">لغو فاکتور</button>
+                                    </form>
                                 </div>
 
                             </div>

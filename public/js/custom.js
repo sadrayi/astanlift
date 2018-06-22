@@ -2223,6 +2223,7 @@ function init_SmartWizard() {
     });
 
     $('.buttonNext').addClass('btn btn-success');
+    $('.buttonNext').attr('type','submit');
     $('.buttonPrevious').addClass('btn btn-primary');
     $('.buttonFinish').addClass('btn btn-default');
 

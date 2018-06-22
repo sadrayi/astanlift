@@ -44,8 +44,11 @@
                         <% if(sherkatlist[i].status === "paid"){%>
                         <td class="success">انجام شده</td>
                         <%}else{%>
+                        <% if(sherkatlist[i].status === "cancelled"){%>
+                        <td class="normal">لغو شده</td>
+                        <%}else{%>
                         <td class="danger">در انتظار بازدید</td>
-                        <%}}}else{%>
+                        <%}}}}else{%>
                         <td class="danger">در انتظار بازدید</td>
                         <%}%>
                         <td><%=sherkatlist[i].address%></td>
@@ -71,19 +74,23 @@
                                             <h4 class="modal-title" id="myModalLabel">پرداخت <%=sherkatlist[i].factoramount%> ریال بابت درخواست شماره <%=sherkatlist[i]._id%></h4>
                                         </div>
                                         <div class="modal-body">
-                                            <div class="form-group">
-                                                <label class="control-label ">نوع پرداخت</label>
-                                                <div class="">
+                                            <div class="row ">
+                                            <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                                                <label class="control-label col-md-12 col-sm-12 col-xs-12">نوع پرداخت</label>
+                                                <div class="col-md-12 col-sm-12 col-xs-12">
                                                     <select class="form-control" name="paykind">
                                                         <option> واریز به حساب</option>
                                                         <option>نقدی</option>
                                                     </select>
                                                 </div>
                                             </div>
-                                            <div class="form-group">
-                                                <label class="control-label ">تاریخ پرداخت </label>
-                                                <div class="">
-                                                    <input name="paydate" id="paydate" class="normal-example form-control "     >
+                                            </div>
+                                            <div class="row ">
+
+                                            <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                                                <label class="control-label col-md-12 col-sm-12 col-xs-12">تاریخ پرداخت </label>
+                                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                                    <input name="paydate" id="paydate" class="normal-example"     >
                                                     <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                                                     <input name="requestid" hidden id="requestid" value="<%=sherkatlist[i]._id%>"    >
                                                     <input name="factorid" hidden id="factrid" value="<%=sherkatlist[i].factorid%>"    >
@@ -92,11 +99,15 @@
                                                     <input name="payamount" hidden id="payamount" value="<%=sherkatlist[i].factoramount%>"    >
                                                 </div>
                                             </div>
-                                            <div class="form-group">
+                                            </div>
+                                            <div class="row ">
+
+                                            <div class="row form-group">
                                                 <label class="control-label ">توضیحات </label>
-                                                <div class="">
+                                                <div class="col-md-12 col-sm-12 col-xs-12">
                                                     <textarea required name="paycomment" id="paycomment" class="form-control "     ></textarea>
                                                 </div>
+                                            </div>
                                             </div>
 
                                         </div>
@@ -116,18 +127,23 @@
 
                             <% if( sherkatlist[i].kind==='عقد قرارداد سرویس ماهیانه'){%>
 
-                            <a href="contract_add?id=<%=sherkatlist[i]._id%>" class="btn btn-info btn-xs"><i class="fa fa-file-text-o"></i>  ثبت قرارداد</a>
+                            <a href="add_contract?id=<%=sherkatlist[i]._id%>" class="btn btn-info btn-xs"><i class="fa fa-file-text-o"></i>  ثبت قرارداد</a>
                             <%}else {%>
                             <% if( sherkatlist[i].kind==='درخواست تعمیر'){%>
                             <a href="tamirform_add?id=<%=sherkatlist[i]._id%>" class="btn btn-info btn-xs"><i class="fa fa-file-text-o"></i>  ثبت فرم تعمیر</a>
+                            <%}else {%>
+                            <% if( sherkatlist[i].kind==='فروش آسانسور'){%>
+                            <a href="pricing_table?id=<%=sherkatlist[i]._id%>" class="btn btn-info btn-xs"><i class="fa fa-file-text-o"></i>  ثبت پیش فاکتور</a>
                             <%}else {%>
                             <a href="factor_add?id=<%=sherkatlist[i]._id%>" class="btn btn-info btn-xs"><i class="fa fa-file-text-o"></i>  ثبت پیش فاکتور </a>
 
                             <%}%>
                             <%}%>
                             <%}%>
+                            <%}%>
 
                             <%if(sherkatlist[i].status!=='paid'){%>
+                            <%if(sherkatlist[i].status!=='cancelled'){%>
                             <a href="#" class="btn btn-danger btn-xs" data-toggle="modal"
                                data-target=".cancel-<%=sherkatlist[i]._id%>"><i class="fa fa-trash-o"></i> لغو </a></a>
                             <div class="modal fade cancel-<%=sherkatlist[i]._id%>" tabindex="-1" role="dialog" aria-hidden="true">
@@ -146,13 +162,18 @@
                                         </div></p>
                                         </div>
                                         <div class="modal-footer">
+                                            <form action="request_cancell" method="post">
+                                                <input hidden name="requestid" value="<%=sherkatlist[i]._id%>">
+                                                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                                             <button type="button" class="btn btn-default" data-dismiss="modal">بستن</button>
-                                            <button type="button" class="btn btn-primary">لغو درخواست</button>
+                                            <button type="submit" class="btn btn-primary">لغو درخواست</button>
+                                            </form>
                                         </div>
 
                                     </div>
                                 </div>
                             </div>
+                            <%}%>
                             <%}%>
                         </td>
                     </tr>

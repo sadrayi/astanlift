@@ -16,7 +16,7 @@
                  <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-                <input id="lastname" name="lastname"  value=" <% if (typeof sherkat !== 'undefined'){%><%=sherkat.lastname%><%}%>"   required="required" class="form-control col-md-7 col-xs-12" type="text">
+                <input id="lastname" name="lastname"  value="<% if (typeof sherkat !== 'undefined'){%><%=sherkat.lastname%><%}%>"   required="required" class="form-control col-md-7 col-xs-12" type="text">
             </div>
         </div>
         <div class="form-group">
@@ -44,14 +44,14 @@
             <label for="address" class="control-label col-md-3 col-sm-3 col-xs-12">آدرس
                  </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-                <input id="address" class="form-control col-md-7 col-xs-12"کدملی  تکراری می باشد.  value=" <% if (typeof sherkat !== 'undefined'){%><%=sherkat.address%><%}%>"   name="address" type="text">
+                <input id="address" class="form-control col-md-7 col-xs-12"کدملی  تکراری می باشد.  value="<% if (typeof sherkat !== 'undefined'){%><%=sherkat.address%><%}%>"   name="address" type="text">
             </div>
         </div>
         <div class="form-group">
             <label for="phone" class="control-label col-md-3 col-sm-3 col-xs-12">تلفن
                  </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-                <input id="phone" class="form-control col-md-7 col-xs-12" name="phone"کدملی  تکراری می باشد.  value=" <% if (typeof sherkat !== 'undefined'){%><%=sherkat.phone%><%}%>"   type="text">
+                <input id="phone" class="form-control col-md-7 col-xs-12" name="phone"کدملی  تکراری می باشد.  value="<% if (typeof sherkat !== 'undefined'){%><%=sherkat.phone%><%}%>"   type="text">
             </div>
         </div>
 
@@ -66,7 +66,7 @@
             <label class="control-label col-md-3 col-sm-3 col-xs-12">تاریخ تولد <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-                <input name="birthdate" id="birthdate" class="normal-example"کدملی  تکراری می باشد.  value=" <% if (typeof sherkat !== 'undefined'){%><%=sherkat.birthdate%><%}%>"   >
+                <input name="birthdate" id="birthdate" class="normal-example"کدملی  تکراری می باشد.  value="<% if (typeof sherkat !== 'undefined'){%><%=sherkat.birthdate%><%}%>"   >
            </div>
         </div>
         <div class="form-group">
@@ -76,12 +76,37 @@
 
                 <div class="checkbox">
                     <label>
-                        <input value="1" name="servicekar" type="checkbox">سرویسکار
+                        <input value="سرویسکار" <% if (typeof sherkat !== 'undefined'){%><%if (sherkat.type.indexOf("سرویسکار") > -1) {%>checked<%}}%> name="type" type="checkbox">سرویسکار
                     </label>
                 </div>
                 <div class="checkbox">
                     <label>
-                        <input name="tamirkar" value="2" type="checkbox"> تعمیرکار
+                        <input name="type" <% if (typeof sherkat !== 'undefined'){%><%if (sherkat.type.indexOf("تعمیرکار") > -1) {%>checked<%}}%> value="تعمیرکار" type="checkbox"> تعمیرکار
+                    </label>
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <input name="type" <% if (typeof sherkat !== 'undefined'){%><%if (sherkat.type.indexOf("فروش آسانسور") > -1) {%>checked<%}}%> value="فروش آسانسور" type="checkbox"> فروش آسانسور
+                    </label>
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <input name="type" <% if (typeof sherkat !== 'undefined'){%><%if (sherkat.type.indexOf("صدور استاندارد") > -1) {%>checked<%}}%> value="صدور استاندارد" type="checkbox"> صدور استاندارد
+                    </label>
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <input name="type" <% if (typeof sherkat !== 'undefined'){%><%if (sherkat.type.indexOf("مشاوره و نظارت") > -1) {%>checked<%}}%> value="مشاوره و نظارت" type="checkbox"> مشاوره و نظارت
+                    </label>
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <input name="type" <% if (typeof sherkat !== 'undefined'){%><%if (sherkat.type.indexOf("پشتیبانی اداری") > -1) {%>checked<%}}%> value="پشتیبانی اداری" type="checkbox"> پشتیبانی اداری
+                    </label>
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <input name="type" value="عقد قرارداد" type="checkbox"> عقد قرارداد
                     </label>
                 </div>
 
@@ -115,7 +140,6 @@
 <% include ./partials/footer%>
 
 </div>
-
 
 <!-- jQuery -->
 <script src="../vendors/jquery/dist/jquery.min.js"></script>
@@ -158,6 +182,7 @@
 <!-- Custom Theme Scripts -->
 <script src="../js/custom.js"></script>
 <script src="../js/persian-datepicker.js"></script>
+<script src="../js/persianumber.js"></script>
 <script src="../js/persian-date.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {

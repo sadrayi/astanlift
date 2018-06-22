@@ -9,6 +9,7 @@
 
  */
 Teknesian = require('../model/teknesian');
+userModel = require('../model/user');
 Address = require('../model/address');
 requestModel = require('../model/request');
 exports.get =async (req, res) => {
@@ -64,6 +65,7 @@ var display=async function(req,res,kind){
     });
 };
 exports.post = async (req, res) => {
+
     switch(req.body.kind){
         case 'درخواست مشاوره و نظرات':
             redirecturl='nezarat_list';
@@ -81,161 +83,183 @@ exports.post = async (req, res) => {
             redirecturl='poshtibani_list';
             break;
         case 'فروش آسانسور':
-            redirecturl='asansrsale_list';
+            redirecturl='asansorsale_list';
             break;
     }
+    if(req.body.savekind==='save') {
+        var body = req.body;
+        body.status = 'bazdid';
+        var addressid;
+        if (body.userid === "0") {
+            var userSave = new userModel(
+                {
+                    phone: req.body.phone,
+                    name: req.body.requester,
+                    birthdate: Date.now(),
+                    email: "a@a.a",
+                });
+            userSave.save();
+        }
+        if (req.body.sabtkind === "register") {
 
-    var body = req.body;
-    body.status='bazdid';
-    var addressid;
-    if(req.body.sabtkind==="register"){
-      if(body.addressid==="0")
-      {
-          var addressSave = new Address(
-              {
-                  phone: body.phone,
-                  city: body.city,
-                  zone: body.zone,
-                  ostan: body.ostan,
-                  address: body.address,
-              });
-          addressSave.save(async function (err,address) {
-              if(err) {
-                  await Teknesian.find({}).then(async function (teknesian) {
-                      res.render("requests/request_add", {
-                          teknesian:teknesian,
-                          message: {
-                              kind: "alert-danger",
-                              content: "خطایی در ثبت رخ داده است."
-                          },
-                          csrfToken: req.csrfToken(),
-                          activePage: {
-                              isAuthenticated: req.isAuthenticated(),
-                              request_add: true,
-                              title: 'ثبت  درخواست'
-                          }
-                      });
-                      return;
-                  });
-              }
-              var requestSave = new requestModel(
-                  {
-                      phone: body.phone,
-                      kind: body.kind,
-                      requester: body.requester,
-                      city: body.city,
-                      ostan: body.ostan,
-                      requestdate: body.requestdate,
-                      status:'bazdid',
-                      addressid: address._id,
-                      zone: body.zone,
-                      address: body.address,
-                      teknesiankind: body.teknesiankind,
-                      teknesian: body.teknesian,
-                      comment: body.comment,
-                  });
-              requestSave.save(async function (err) {
-                  if(err)
-                      await Teknesian.find({}).then(async function (teknesian) {
 
-                      res.render("requests/request_add", {
-                          teknesian:teknesian,
-                          message:{
-                              kind:"alert-danger",
-                              content:"خطایی در ثبت رخ داده است."
-                          },
-                          csrfToken: req.csrfToken(),
-                          activePage: {
-                              isAuthenticated:req.isAuthenticated(),
-                              request_add: true,
-                              title:'ثبت  درخواست'
-                          }
-                      });});
-                  res.redirect(redirecturl+'?message=successadd');
-              });
-      });}
-      else
-      {
-          var requestSave = new requestModel(body);
-          requestSave.save(async function (err) {
-                    if(err)
+            if (body.addressid === "0") {
+                var addressSave = new Address(
+                    {
+                        phone: body.phone,
+                        city: body.city,
+                        zone: body.zone,
+                        ostan: body.ostan,
+                        latlng:body.latLng,
+                        address: body.address,
+                    });
+                addressSave.save(async function (err, address) {
+                    if (err) {
+                        await Teknesian.find({}).then(async function (teknesian) {
+                            res.render("requests/request_add", {
+                                teknesian: teknesian,
+                                message: {
+                                    kind: "alert-danger",
+                                    content: "خطایی در ثبت رخ داده است."
+                                },
+                                csrfToken: req.csrfToken(),
+                                activePage: {
+                                    isAuthenticated: req.isAuthenticated(),
+                                    request_add: true,
+                                    title: 'ثبت  درخواست'
+                                }
+                            });
+                            return;
+                        });
+                    }
+                    var requestSave = new requestModel(
+                        {
+                            phone: body.phone,
+                            kind: body.kind,
+                            requester: body.requester,
+                            city: body.city,
+                            ostan: body.ostan,
+                            requestdate: body.requestdate,
+                            status: 'bazdid',
+                            latlng:body.latLng,
+                            addressid: address._id,
+                            zone: body.zone,
+                            address: body.address,
+                            teknesiankind: body.teknesiankind,
+                            teknesian: body.teknesian,
+                            comment: body.comment,
+                        });
+                    requestSave.save(async function (err) {
+                        if (err)
+                            await Teknesian.find({}).then(async function (teknesian) {
+
+                                res.render("requests/request_add", {
+                                    teknesian: teknesian,
+                                    message: {
+                                        kind: "alert-danger",
+                                        content: "خطایی در ثبت رخ داده است."
+                                    },
+                                    csrfToken: req.csrfToken(),
+                                    activePage: {
+                                        isAuthenticated: req.isAuthenticated(),
+                                        request_add: true,
+                                        title: 'ثبت  درخواست'
+                                    }
+                                });
+                            });
+                        res.redirect(redirecturl + '?message=successadd');
+                    });
+                });
+            }
+            else {
+                var requestSave = new requestModel(body);
+                requestSave.save(async function (err) {
+                    if (err)
                         await Teknesian.find({}).then(async function (teknesian) {
 
-                  res.render("requests/request_add", {
-                      teknesian:teknesian,
-                            message:{
-                                kind:"alert-danger",
-                                content:"خطایی در ثبت رخ داده است."
-                            },
-                            csrfToken: req.csrfToken(),
-                            activePage: {
-                                isAuthenticated:req.isAuthenticated(),
-                                request_add: true,
-                                title:'ثبت  درخواست'
-                            }
-                        });});
-                    res.redirect(redirecturl+'?message=successadd');
-        });}}
-    else if(req.body.sabtkind==="update")
-    {
-        var addressid;
-        var requestsave=                  {
-            phone: req.body.phone,
-            kind: req.body.kind,
-            requester: req.body.requester,
-            requestdate: req.body.requestdate,
-            city: req.body.city,
-            ostan: req.body.ostan,
-            addressid: req.body.addressid,
-            zone: req.body.zone,
-            address: req.body.address,
-            teknesiankind: req.body.teknesiankind,
-            teknesian: req.body.teknesian,
-            comment: req.body.comment,
-        }
-        if(body.addressid==="0")
-        {
-            var addressSave = new Address(
-                {
-                    phone: body.phone,
-                    city: body.city,
-                    ostan: body.ostan,
-                    zone: body.zone,
-                    ostan: body.ostan,
-                    address: body.address,
-                });
-            addressSave.save((async function (err,addressids) {
-                if(err)
-                    await Teknesian.find({}).then(async function (teknesian) {
-
-                        res.render("requests/request_add", {
-                            teknesian:teknesian,
-                            message:{
-                                kind:"alert-danger",
-                                content:"خطایی در ثبت رخ داده است."
-                            },
-                            csrfToken: req.csrfToken(),
-                            activePage: {
-                                isAuthenticated:req.isAuthenticated(),
-                                request_add: true,
-                                title:'ثبت  درخواست'
-                            }
-                        });});
-                requestsave.addressid=addressids._id;
-                        requestModel.findOneAndUpdate({_id:req.body.id},requestsave, function (err) {
-                            if (err)
-                                console.log(err);
-                            res.redirect(redirecturl+'?message=successedit');
+                            res.render("requests/request_add", {
+                                teknesian: teknesian,
+                                message: {
+                                    kind: "alert-danger",
+                                    content: "خطایی در ثبت رخ داده است."
+                                },
+                                csrfToken: req.csrfToken(),
+                                activePage: {
+                                    isAuthenticated: req.isAuthenticated(),
+                                    request_add: true,
+                                    title: 'ثبت  درخواست'
+                                }
+                            });
                         });
-            }));}
-        else
-            requestModel.findOneAndUpdate({_id:req.body.id},requestsave, function (err) {
-            if (err)
-                console.log(err);
-            res.redirect(redirecturl+'?message=successedit');
+                    res.redirect(redirecturl + '?message=successadd');
+                });
+            }
+        }
+        else if (req.body.sabtkind === "update") {
+            var addressid;
+            var requestsave = {
+                phone: req.body.phone,
+                kind: req.body.kind,
+                requester: req.body.requester,
+                requestdate: req.body.requestdate,
+                city: req.body.city,
+                ostan: req.body.ostan,
+                latlng:body.latLng,
+                addressid: req.body.addressid,
+                zone: req.body.zone,
+                address: req.body.address,
+                teknesiankind: req.body.teknesiankind,
+                teknesian: req.body.teknesian,
+                comment: req.body.comment,
+            }
+            if (body.addressid === "0") {
+                var addressSave = new Address(
+                    {
+                        phone: body.phone,
+                        city: body.city,
+                        ostan: body.ostan,
+                        latlng:body.latlng,
+                        zone: body.zone,
+                        address: body.address,
+                    });
+                addressSave.save((async function (err, addressids) {
+                    if (err)
+                        await Teknesian.find({}).then(async function (teknesian) {
 
-        })
+                            res.render("requests/request_add", {
+                                teknesian: teknesian,
+                                message: {
+                                    kind: "alert-danger",
+                                    content: "خطایی در ثبت رخ داده است."
+                                },
+                                csrfToken: req.csrfToken(),
+                                activePage: {
+                                    isAuthenticated: req.isAuthenticated(),
+                                    request_add: true,
+                                    title: 'ثبت  درخواست'
+                                }
+                            });
+                        });
+                    requestsave.addressid = addressids._id;
+                    requestModel.findOneAndUpdate({_id: req.body.id}, requestsave, function (err) {
+                        if (err)
+                            console.log(err);
+                        res.redirect(redirecturl + '?message=successedit');
+                    });
+                }));
+            }
+            else
+                requestModel.findOneAndUpdate({_id: req.body.id}, requestsave, function (err) {
+                    if (err)
+                        console.log(err);
+                    res.redirect(redirecturl + '?message=successedit');
+
+                })
+        }
+
     }
+    else {
+        res.redirect(redirecturl);
 
-
+    }
 };

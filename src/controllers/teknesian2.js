@@ -4,11 +4,11 @@ exports.get =async (req, res) => {
     {
         case "successadd":
             var message = "alert-success";
-            var content = "ثبت نام با موفقیت انجام شد.";
+            var content = "تکنسین با موفقیت انجام شد.";
             break;
         case "successedit":
             var message = "alert-success";
-            var content = "شرکت با موفقیت ویرایش شد.";
+            var content = "تکنسین با موفقیت ویرایش شد.";
             break;
     }
     await Teknesian.find({}).then(async function (res2) {

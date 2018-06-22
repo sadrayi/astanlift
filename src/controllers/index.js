@@ -1,7 +1,3 @@
-var merge = require('merge'),
-    exist = require(__dirname + '/../custom_modules/module-exist');
-const express = require('express');
-const path = require('path');
 //const app = express.Router();
 module.exports = function (app, passport, Account) {
 // import home route controller
@@ -42,7 +38,14 @@ module.exports = function (app, passport, Account) {
     const request_add = require('./request_add');
     const product_list = require('./product_list');
     const request_view = require('./request_view');
+    const imani_add = require('./blog/add/imani_add');
+    const matlab_list = require('./blog/matlab_list');
+    const category_add = require('./category_add');
+    const add_contract = require('./add_contract');
     const factor_add = require('./factor_add');
+    const package_add = require('./package_add');
+    const map = require('./map');
+    const chat = require('./chat');
     const error = require('./error');
 
     app.post('/register', function(req, res) {
@@ -78,13 +81,42 @@ module.exports = function (app, passport, Account) {
         res.redirect('back');
     });
 // add home route
-    app.get('/', home.get);
+    app.get('/', function(req,res){
+        res.render('blank', {
+        csrfToken: req.csrfToken(),
+        activePage: {isAuthenticated: req.isAuthenticated()}
+    })}
+    );
+    app.get('/package_add', package_add.get);
+    app.get('/map', map.get);
+    app.get('/chat', chat.get);
+    app.post('/package_add', package_add.post);
+    app.post('/deactivate_matlab', imani_add.deactivate);
+    app.post('/activate_matlab', imani_add.activate);
     app.get('/user_list', user.get);
     app.get('/product_add', product_add.get);
     app.get('/pricing_table', pricing_table.get);
     app.get('/sherkat_list', teknesian.get);
+    app.get('/category_add', category_add.get);
+    app.get('/imani_list', matlab_list.imani);
+    app.get('/matlab_add', imani_add.get);
+    app.get('/imani_add', imani_add.imani);
+    app.get('/certificate_list', matlab_list.certificate);
+    app.get('/certificate_add', imani_add.certificate);
+    app.get('/rules_list', matlab_list.rules);
+    app.get('/rules_add', imani_add.rules);
+    app.get('/learning_add', imani_add.learning);
+    app.get('/learning_list', matlab_list.learning);
+    app.get('/recepie_add', imani_add.recepie);
+    app.get('/recepie_list', matlab_list.recepie);
+    app.post('/category_add', category_add.post);
+    app.post('/matlab_add', imani_add.post);
+    app.post('/product_add', product_add.post);
     app.get('/blank', function(req, res) {
-        res.render('blank');
+        res.render('blank', {
+            csrfToken: req.csrfToken(),
+            activePage: {isAuthenticated: req.isAuthenticated()}
+        });
     });
     app.get('/sherkat_add', sherkat_add.get);
     app.get('/login', login.get);
@@ -94,15 +126,20 @@ module.exports = function (app, passport, Account) {
     app.get('/nezarat_add', request_add.nezarat);
     app.get('/poshtibani_add', request_add.poshtibani);
     app.get('/contract_add', request_add.contract);
+    app.get('/add_contract', add_contract.get);
+    app.post('/add_contract', add_contract.post);
     app.get('/asansorsale_add', request_add.asansorsale);
+    app.get('/asansor_add', request_add.asansorsale);
     app.get('/repair_add', request_add.repair);
     app.get('/asansorsale_list', asansorsale.get);
+    app.get('/asansor_list', asansorsale.get);
     app.get('/poshtibani_list', poshtibani_list.get);
     app.get('/standard_invoice', invoice_list.standard);
     app.get('/nezarat_invoice', invoice_list.nezarat);
     app.get('/poshtibani_invoice', invoice_list.poshtibani);
     app.get('/contract_invoice', invoice_list.contract);
     app.get('/asansorsale_invoice', invoice_list.asansorsale);
+    app.get('/asansor_invoice', invoice_list.asansorsale);
     app.get('/repair_invoice', invoice_list.repair);
     app.get('/repair_list', repair_list.get);
     app.get('/poshtibani_list', poshtibani_list.get);
@@ -114,7 +151,8 @@ module.exports = function (app, passport, Account) {
     app.get('/contract_list', contract_list.get);
     app.get('/nezarat_list', nezarat_list.get);
     app.get('/request_list', request_list.get);
-    app.get('/periodic_requests', request_list.priodic);
+    app.post('/request_cancell', request_list.cancell);
+    app.post('/invoice_cancell', invoice_list.cancell);
     app.get('/request_view', request_view.get);
     app.get('/request_add', request_add.get);
     app.post('/request_add', request_add.post);
@@ -149,4 +187,4 @@ module.exports = function (app, passport, Account) {
         res.redirect('back');
     });
 
-}
+};

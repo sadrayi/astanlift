@@ -4,13 +4,13 @@ var walletModel=require('../model/wallet');
 
 exports.get = (req, res) => {
     factorModel.findOne({_id:req.query.id},async function (err,result) {
-        await requestModel.findOne({_id:result.requestid},function(err,request) {
+        await requestModel.findOne({_id:result.requestid},async function(err,request) {
             result.address=request.address;
             result.zone=request.zone;
             result.city=request.city;
             }
         );
-        await walletModel.findOne({factorid:result._id},function(err,wallet) {
+        await walletModel.findOne({factorid:result._id},async function(err,wallet) {
             result.paykind=wallet.paykind;
             result.paydate=wallet.paydate;
             }

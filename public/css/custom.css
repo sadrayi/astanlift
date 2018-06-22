@@ -596,7 +596,7 @@ pre, code {
 
 body {
   color: #73879c;
-  background: #18acb6;
+  background: #2a3f54;
   font-family: IRANSans !important;
   font-size: 13px;
   font-weight: 400;
@@ -3251,9 +3251,6 @@ textarea:focus {
   line-height: 20px;
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
 }
-.cancellrebbon {
-  background-color: #4b5f71 !important;
-}
 .activerebbon {
   background-color: #26b99a !important;
 }
@@ -3580,7 +3577,7 @@ th {
 }
 
 .login {
-  background: #00;
+  background: #f7f7f7;
 }
 .login .fa-paw {
   font-size: 26px;
@@ -3626,6 +3623,7 @@ th {
   padding: 25px 0 0;
   position: relative;
   text-align: center;
+  text-shadow: 0 1px 0 #fff;
   min-width: 280px;
 }
 .login_content a {

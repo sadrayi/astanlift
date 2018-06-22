@@ -9,7 +9,7 @@
 
             <div class="x_content">
 
-                <form method="post" action="/contract_add" class="form-horizontal form-label-left">
+                <form method="post" action="/add_contract" class="form-horizontal form-label-left">
 
                 <!-- Tabs -->
                 <div id="wizard_verticle" class="form_wizard wizard_verticle">
@@ -86,7 +86,7 @@
                             <div class="form-group col-md-6 col-sm-6">
                                 <label for="requester" class="control-label col-md-3 col-sm-3">نام و نام خانوادگی کارفرما</label>
                                 <div class="col-md-6 col-sm-6">
-                                    <input id="requester"  <%if(typeof contract!=='undefined'){%>value="<%=contract.requester%>"<%}%> class="form-control col-md-7 col-xs-12" type="text" {
+                                    <input id="requester"  <%if(typeof contract!=='undefined'){%>readonly value="<%=contract.requester%>"<%}%> class="form-control col-md-7 col-xs-12" type="text" {
                                            name="requester">
                                 </div>
                             </div>
@@ -128,7 +128,7 @@
                             <div class="form-group col-md-6 col-sm-6">
                                 <label for="phone" class="control-label col-md-3 col-sm-3">شماره همراه </label>
                                 <div class="col-md-6 col-sm-6">
-                                    <input id="phone"  <%if(typeof contract!=='undefined'){%>value="<%=contract.phone%>"<%}%> class="form-control col-md-7 col-xs-12" type="text"
+                                    <input id="phone"  <%if(typeof contract!=='undefined'){%>readonly value="<%=contract.phone%>"<%}%> class="form-control col-md-7 col-xs-12" type="text"
                                            name="phone">
                                 </div>
                             </div>
@@ -146,7 +146,7 @@
                                            name="buildingmanager">
                                 </div>
                             </div>
-                            <input id="sabtkind" name="sabtkind"   class="hidden"          <% if (typeof sherkat !== 'undefined'){%> value="update" <% } else {%> value="register" <%}%>
+                            <input id="sabtkind" name="sabtkind"   class="hidden"          <% if (typeof contract !== 'undefined'){%> value="<%=contract.savetype%>" <%}%>
                             >        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
 
 
@@ -186,6 +186,10 @@
                             <div class="col-md-6 col-sm-6">
                                 <input id="address" readonly <%if(typeof contract!=='undefined'){%>value="<%=contract.address%>"<%}%> class="form-control col-md-7 col-xs-12" type="text" name="address">
                                 <input name="addressid" hidden <%if(typeof contract!=='undefined'){%>value="<%=contract.addressid%>"<%}%>>
+                                <input name="latLng" hidden <%if(typeof contract!=='undefined'){%>value="<%=contract.latlng%>"<%}%>>
+                                <%if(typeof contract!=='undefined'){%><%if(typeof contract.contractid!=='undefined'){%>
+                                <input name="contractid" hidden value="<%=contract.contractid%>">
+                                <%}}%>
                             </div>
                         </div>
 
@@ -361,7 +365,7 @@
                         <div class="form-group col-md-6 col-sm-6">
                             <label for="servicepersal" class="control-label col-md-3 col-sm-3"> تعداد سرویس در سال</label>
                             <div class="col-md-6 col-sm-6">
-                                <input id="servicepersal" class="form-control col-md-7 col-xs-12 single" type="text"
+                                <input id="servicepersal" required class="form-control col-md-7 col-xs-12 single" type="text"
                                        name="servicepersal">
 
                             </div>
@@ -477,7 +481,7 @@
                         <div class="form-group col-md-6 col-sm-6">
                             <label for="monthlycost" class="control-label col-md-3 col-sm-3">مبلغ ماهیانه</label>
                             <div class="col-md-6 col-sm-6">
-                                <input id="monthlycost"  <%if(typeof contract!=='undefined'){%>value="<%=contract.monthlycost%>"<%}%> class="form-control col-md-7 col-xs-12 single" type="text"
+                                <input id="monthlycost"  <%if(typeof contract!=='undefined'){%> value="<%=contract.monthlycost%>"<%}%> class="form-control col-md-7 col-xs-12 single" type="text"
                                        name="monthlycost">
 
                             </div>
@@ -485,7 +489,7 @@
                         <div class="form-group col-md-6 col-sm-6">
                             <label for="totalcost" class="control-label col-md-3 col-sm-3">مبلغ کل</label>
                             <div class="col-md-6 col-sm-6">
-                                <input id="totalcost"  <%if(typeof contract!=='undefined'){%>value="<%=contract.totalcost%>"<%}%> class="form-control col-md-7 col-xs-12 single" type="text"
+                                <input id="totalcost"  <%if(typeof contract!=='undefined'){%> value="<%=contract.totalcost%>"<%}%> class="form-control col-md-7 col-xs-12 single" type="text"
                                        name="totalcost">
 
                             </div>
@@ -493,7 +497,7 @@
                         <div class="form-group col-md-6 col-sm-6">
                             <label for="pishpardakhtkind" class="control-label col-md-3 col-sm-3">شرایط پیش پرداخت</label>
                             <div class="col-md-6 col-sm-6">
-                                <select id="pishpardakhtkind" class="form-control col-md-7 col-xs-12 single" type="text"
+                                <select <%if(typeof contract!=='undefined'){%> value="<%=contract.pishpardakhtkind%>"<%}%> id="pishpardakhtkind" class="form-control col-md-7 col-xs-12 single" type="text"
                                        name="pishpardakhtkind">
                                     <option>ماهیانه</option>
                                     <option>سه ماهه</option>
@@ -506,7 +510,7 @@
                         <div class="form-group col-md-6 col-sm-6">
                             <label for="mandeavalie" class="control-label col-md-3 col-sm-3">مانده اولیه</label>
                             <div class="col-md-6 col-sm-6">
-                                <input id="mandeavalie"  <%if(typeof contract!=='undefined'){%>value="<%=contract.mandeavalie%>"<%}%> class="form-control col-md-7 col-xs-12 single" type="text"
+                                <input id="mandeavalie"  <%if(typeof contract!=='undefined'){%> value="<%=contract.mandeavalie%>"<%}%> class="form-control col-md-7 col-xs-12 single" type="text"
                                        name="mandeavalie">
 
                             </div>
@@ -548,7 +552,7 @@
                             <div class="col-md-7 col-sm-7 col-xs-12">
                                 <div class="radio">
                                     <label>
-                                        <select class=" maliat"  name="teknesiankind"  id="teknesiankind" onchange="onmanualteknesian()">
+                                        <select class=" maliat"  <%if(typeof contract!=='undefined'){%> value="<%=contract.maliat%>"<%}%> name="teknesiankind"  id="teknesiankind" onchange="onmanualteknesian()">
                                             <option value="0">دستی</option>
                                             <option value="1" selected>خودکار</option>
                                         </select>
@@ -561,7 +565,7 @@
                                 <span class="required">*</span>
                             </label>
                             <div class="col-md-9 col-sm-9 col-xs-12">
-                                <select disabled class="js-example-basic-single form-control col-md-7 col-xs-12" id="teknesian" name="teknesian">
+                                <select disabled  <%if(typeof contract!=='undefined'){%> value="<%=contract.maliat%>"<%}%> class="js-example-basic-single form-control col-md-7 col-xs-12" id="teknesian" name="teknesian">
                                     <%teknesian.forEach(function (tek){%>
                                     <option value="<%=tek.id%>"><%=tek.lastname%></option>
                                     <%})%>

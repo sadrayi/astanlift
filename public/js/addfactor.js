@@ -100,9 +100,10 @@
             maliat=0;
         }
         document.getElementById('factorcount').value =count;
-        document.getElementById('total').innerHTML = moneyformat((maliat+sum).toString());
         document.getElementById('total1').value = ((maliat+sum).toString());
 
+        document.getElementById('total').innerHTML = moneyformat((maliat+sum).toString());
+console.log("total1"+document.getElementById('total1').value);
     };
 
     function persianToEnglish(value) {
