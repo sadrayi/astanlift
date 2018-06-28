@@ -12,6 +12,10 @@ Teknesian = require('../model/teknesian');
 userModel = require('../model/user');
 Address = require('../model/address');
 requestModel = require('../model/request');
+contractModel = require('../model/contract');
+var http = require('http'),
+    Stream = require('stream').Transform,
+    fs = require('fs');
 exports.get =async (req, res) => {
     display(req, res,null);
 };
@@ -64,6 +68,15 @@ var display=async function(req,res,kind){
             });
     });
 };
+var download = function(uri, filename, callback){
+    request.head(uri, function(err, res, body){
+        console.log('content-type:', res.headers['content-type']);
+        console.log('content-length:', res.headers['content-length']);
+
+        request(uri).pipe(fs.createWriteStream(filename)).on('close', callback);
+    });
+};
+
 exports.post = async (req, res) => {
 
     switch(req.body.kind){
@@ -101,14 +114,26 @@ exports.post = async (req, res) => {
             userSave.save();
         }
         if (req.body.sabtkind === "register") {
+            address_picname='./public/images/address_pic/'+req.body.phone+Date.now()+'.png';
+            var url='http://api.cedarmaps.com/v1/static/light/'+req.body.latLng+',14/600x400@2x?access_token=48bf6ec91f7f5ded1bd11d005e155a9c0e0067bc&markers=marker-default|'+req.body.latLng;
+            http.request(url, function(response) {
+                var data = new Stream();
 
+                response.on('data', function(chunk) {
+                    data.push(chunk);
+                });
 
+                response.on('end', function() {
+                    fs.writeFileSync(address_picname, data.read());
+                });
+            }).end();
             if (body.addressid === "0") {
                 var addressSave = new Address(
                     {
                         phone: body.phone,
                         city: body.city,
                         zone: body.zone,
+                        address_pic: address_picname,
                         ostan: body.ostan,
                         latlng:body.latLng,
                         address: body.address,
@@ -132,6 +157,14 @@ exports.post = async (req, res) => {
                             return;
                         });
                     }
+                    await contractModel.findOne({phone:req.body.phone,contractenddate:{
+                            $gte: new Date()
+                        }},async function (eshterakstatus) {
+                        var eshterakstatus;
+                        if(eshterakstatus!==null)
+                            eshterakstatus="مشترک";
+                        else
+                            eshterakstatus="غیرمشترک";
                     var requestSave = new requestModel(
                         {
                             phone: body.phone,
@@ -139,6 +172,8 @@ exports.post = async (req, res) => {
                             requester: body.requester,
                             city: body.city,
                             ostan: body.ostan,
+                            address_pic: address_picname,
+                            eshterakstatus: eshterakstatus,
                             requestdate: body.requestdate,
                             status: 'bazdid',
                             latlng:body.latLng,
@@ -169,10 +204,19 @@ exports.post = async (req, res) => {
                             });
                         res.redirect(redirecturl + '?message=successadd');
                     });
-                });
+                });});
             }
             else {
+                await contractModel.findOne({phone:req.body.phone,contractenddate:{
+                        $gte: new Date()
+                    }},async function (eshterakstatus) {
+                    var eshterakstatus;
+                    if(eshterakstatus!==null)
+                        eshterakstatus="مشترک";
+                    else
+                        eshterakstatus="غیرمشترک";
                 var requestSave = new requestModel(body);
+                    requestSave.eshterakstatus=eshterakstatus;
                 requestSave.save(async function (err) {
                     if (err)
                         await Teknesian.find({}).then(async function (teknesian) {
@@ -192,32 +236,32 @@ exports.post = async (req, res) => {
                             });
                         });
                     res.redirect(redirecturl + '?message=successadd');
-                });
+                });});
             }
         }
         else if (req.body.sabtkind === "update") {
             var addressid;
-            var requestsave = {
-                phone: req.body.phone,
-                kind: req.body.kind,
-                requester: req.body.requester,
-                requestdate: req.body.requestdate,
-                city: req.body.city,
-                ostan: req.body.ostan,
-                latlng:body.latLng,
-                addressid: req.body.addressid,
-                zone: req.body.zone,
-                address: req.body.address,
-                teknesiankind: req.body.teknesiankind,
-                teknesian: req.body.teknesian,
-                comment: req.body.comment,
-            }
+
             if (body.addressid === "0") {
+                address_picname='./public/images/address_pic/'+req.body.phone+Date.now()+'.png';
+                var url='http://api.cedarmaps.com/v1/static/light/'+req.body.latLng+',14/600x400@2x?access_token=48bf6ec91f7f5ded1bd11d005e155a9c0e0067bc&markers=marker-default|'+req.body.latLng;
+                http.request(url, function(response) {
+                    var data = new Stream();
+
+                    response.on('data', function(chunk) {
+                        data.push(chunk);
+                    });
+
+                    response.on('end', function() {
+                        fs.writeFileSync(address_picname, data.read());
+                    });
+                }).end();
                 var addressSave = new Address(
                     {
                         phone: body.phone,
                         city: body.city,
                         ostan: body.ostan,
+                        address_pic:address_picname,
                         latlng:body.latlng,
                         zone: body.zone,
                         address: body.address,
@@ -240,6 +284,22 @@ exports.post = async (req, res) => {
                                 }
                             });
                         });
+                    var requestsave = {
+                        phone: req.body.phone,
+                        kind: req.body.kind,
+                        requester: req.body.requester,
+                        requestdate: req.body.requestdate,
+                        city: req.body.city,
+                        ostan: req.body.ostan,
+                        latlng:body.latLng,
+                        address_pic: address_picname,
+                        addressid: req.body.addressid,
+                        zone: req.body.zone,
+                        address: req.body.address,
+                        teknesiankind: req.body.teknesiankind,
+                        teknesian: req.body.teknesian,
+                        comment: req.body.comment,
+                    }
                     requestsave.addressid = addressids._id;
                     requestModel.findOneAndUpdate({_id: req.body.id}, requestsave, function (err) {
                         if (err)

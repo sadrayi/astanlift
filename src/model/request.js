@@ -10,6 +10,8 @@ autoIncrement.initialize(global.db);var requestScheme = new mongoose.Schema({
     requester: {type: String},
     city: {type: String},
     addressid: {type: String},
+    eshterakstatus: {type: String},
+    address_pic: {type: String},
     ostan: {type: String},
     zone: {type: String},
     requestdate: {type: Date},

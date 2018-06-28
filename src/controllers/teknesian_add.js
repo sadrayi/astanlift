@@ -90,6 +90,7 @@ exports.post = async (req, res) => {
                 let GeorgDate =jalaali.toGregorian(persianDate[0], persianDate[1], persianDate[2]);
                 let birthdate=GeorgDate.gy+"/"+GeorgDate.gm+"/"+GeorgDate.gd;
                 req.body.birthdate=birthdate;
+                req.body.profile_pic=picname;
                 Teknesian.findOneAndUpdate(req.body.codemeli,req.body,function (err) {
                     if(err)
                         console.log(err);

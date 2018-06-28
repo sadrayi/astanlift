@@ -142,7 +142,7 @@
                     <span class="required">*</span>
                 </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                    <select <% if (typeof sherkat !== 'undefined'){ %><%if(sherkat.teknesiankind==="1"){%>disabled<%}}else {%>disabled<%}%> class="js-example-basic-single form-control col-md-7 col-xs-12" id="teknesian" name="teknesian">
+                    <select <% if (typeof sherkat !== 'undefined'){ %><%if(sherkat.teknesiankind==="1"){%>readonly<%}}else {%>readonly<%}%> class="js-example-basic-single form-control col-md-7 col-xs-12" id="teknesian" name="teknesian">
                         <%teknesian.forEach(function (tek){%>
                         <option <% if (typeof sherkat !== 'undefined'){ %><%if(sherkat.teknesian===tek.id){%>selected<%}}%>  value="<%=tek.id%>"><%=tek.lastname%></option>
                         <%})%>
@@ -371,7 +371,8 @@
             console.log("majid1"+document.getElementById('latLng').value)
         }
         else {
-            var haightAshbury = {lat: 37.769, lng: -122.446};
+
+            var haightAshbury = {lat: 36.299633268684566, lng:59.57661580427589};
             console.log("2"+haightAshbury)
         }
         map = new google.maps.Map(document.getElementById('map'), {
@@ -457,12 +458,12 @@
         if($('#teknesiankind').val()==='0')
         {
             console.log("dasti")
-            $('#teknesian').attr('disabled',false);
+            $('#teknesian').attr('readonly',false);
         }
         else
         {
             console.log("auto")
-            $('#teknesian').attr('disabled',true);
+            $('#teknesian').attr('readonly',true);
         }
 
 

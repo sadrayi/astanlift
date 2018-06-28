@@ -10,6 +10,7 @@ var AddressScheme = new mongoose.Schema({
     ostan: {type: String},
     zone: {type: String},
     address: {type: String},
+    address_pic: {type: String},
     latlng: {type: String},
     created: {type: Date, default: Date.now},
 });

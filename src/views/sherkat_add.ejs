@@ -33,7 +33,7 @@
             <label for="shomaresabt" class="control-label col-md-3 col-sm-3 col-xs-12">شماره ثبت شرکت<span class="required">*</span>
                  </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-                <input id="shomaresabt" <% if ( typeof sherkat !== 'undefined' ) { %> disabled value="<%=sherkat.sabtno%>" <% } %> class="form-control col-md-7 col-xs-12" name="shomaresabt"   required="required"  type="text">
+                <input id="shomaresabt" <% if ( typeof sherkat !== 'undefined' ) { %> readonly value="<%=sherkat.sabtno%>" <% } %> class="form-control col-md-7 col-xs-12" name="shomaresabt"   required="required"  type="text">
             </div>
         </div>
         <div class="form-group">

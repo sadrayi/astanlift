@@ -565,7 +565,7 @@
                                 <span class="required">*</span>
                             </label>
                             <div class="col-md-9 col-sm-9 col-xs-12">
-                                <select disabled  <%if(typeof contract!=='undefined'){%> value="<%=contract.maliat%>"<%}%> class="js-example-basic-single form-control col-md-7 col-xs-12" id="teknesian" name="teknesian">
+                                <select readonly  <%if(typeof contract!=='undefined'){%> value="<%=contract.maliat%>"<%}%> class="js-example-basic-single form-control col-md-7 col-xs-12" id="teknesian" name="teknesian">
                                     <%teknesian.forEach(function (tek){%>
                                     <option value="<%=tek.id%>"><%=tek.lastname%></option>
                                     <%})%>
@@ -733,12 +733,12 @@
         if($('#teknesiankind').val()==='0')
         {
             console.log("dasti")
-            $('#teknesian').attr('disabled',false);
+            $('#teknesian').attr('readonly',false);
         }
         else
         {
             console.log("auto")
-            $('#teknesian').attr('disabled',true);
+            $('#teknesian').attr('readonly',true);
         }
 
 
