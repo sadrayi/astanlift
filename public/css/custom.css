@@ -596,7 +596,13 @@ pre, code {
 
 body {
   color: #73879c;
-  background: #2a3f54;
+  background: #EA5C54 ; /* Old browsers */
+  background: -moz-linear-gradient(-45deg,  #EA5C54  0%, #bb6dec 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,#EA5C54 ), color-stop(100%,#bb6dec)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(-45deg,  #EA5C54  0%,#bb6dec 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(-45deg,  #EA5C54  0%,#bb6dec 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(-45deg,  #EA5C54  0%,#bb6dec 100%); /* IE10+ */
+  background: linear-gradient(135deg,  #EA5C54  0%,#bb6dec 100%); /* W3C */
   font-family: IRANSans !important;
   font-size: 13px;
   font-weight: 400;
@@ -910,11 +916,14 @@ table.no-margin .progress {
   margin-bottom: 10px;
   position: relative;
   min-height: 1px;
-  float: left;
+  float: right;
   padding-right: 10px;
   padding-left: 10px;
 }
+.normal{
+  background-color: #4b5f71;
 
+}
 @media (min-width: 768px) {
   .col-md-55 {
     width: 20%;
@@ -3251,6 +3260,9 @@ textarea:focus {
   line-height: 20px;
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
 }
+.cancellrebbon {
+  background-color: #4b5f71 !important;
+}
 .activerebbon {
   background-color: #26b99a !important;
 }
@@ -3577,7 +3589,7 @@ th {
 }
 
 .login {
-  background: #f7f7f7;
+  background: #00;
 }
 .login .fa-paw {
   font-size: 26px;
@@ -3586,9 +3598,10 @@ th {
 .login_wrapper {
   right: 0;
   margin: 0 auto;
-  margin-top: 5%;
+  margin-top: 15%;
   max-width: 350px;
   position: relative;
+
 }
 
 .registration_form {
@@ -3619,11 +3632,10 @@ th {
 }
 
 .login_content {
-  margin: 0 auto;
-  padding: 25px 0 0;
-  position: relative;
+  padding: 25px;
+  background: linear-gradient(45deg, #35394a 0%, #1f222e 100%);
+  position: center;
   text-align: center;
-  text-shadow: 0 1px 0 #fff;
   min-width: 280px;
 }
 .login_content a {

@@ -14,6 +14,8 @@ var tamirformScheme = new mongoose.Schema({
     teknesianid:  {type: String},
     arzeshafzude:  {type: String},
     factorsum:  {type: String},
+    spareneed:  {type: String},
+    teknesianneed:  {type: String},
     factorcount:  {type: String},
     factormaliat:  {type: String},
     title: [{type: String}],

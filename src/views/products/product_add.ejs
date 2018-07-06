@@ -21,32 +21,16 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">قیمت محصول
-                            <span class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input id="productcost" name="productcost"  value="<% if (typeof sherkat !== 'undefined'){%><%=sherkat.productcost%><%}%>" type="number" required="required" class="form-control col-md-7 col-xs-12">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label  class="control-label col-md-3 col-sm-3 col-xs-12"  for="productcount">موجودی
-                            <span class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input id="productcount" name="productcount"  value="<% if (typeof sherkat !== 'undefined'){%><%if (typeof sherkat.productcount !== 'undefined'){%><%=sherkat.productcount%><%}}%>" required="required" type="number" class="form-control col-md-7 col-xs-12">
-                        </div>
-                    </div>
-                    <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" >دسته بندی
                             <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <select class="js-example-basic-single form-control col-md-7 col-xs-12" name="catname" id="catname" required="required">
+                            <select onchange="chnagedcat()" class="js-example-basic-single form-control col-md-7 col-xs-12" name="catid" id="catid" required="required">
                                 <%cats.forEach(function (cat){%>
-                                <option><%=cat.catname%></option>
+                                <option value="<%=cat._id%>"><%=cat.catname%></option>
                                 <%})%>
                             </select>
-
+<input hidden name="catname" id="catname" value="<%cats[0].catname%>">
                         </div>
 
                     </div>
@@ -228,6 +212,20 @@
         $('#productdetail').val($('#editor').html());
         console.log( $('#productdetail').val());
     });
+</script>
+<script>
+    function chnagedcat() {
+        var catname = document.getElementById("catname");
+        var catid = document.getElementById("catid");
+        catname.setAttribute('value', catid.options[catid.selectedIndex].text);
+
+    }
+    $(document).ready(function() {
+        var catname = document.getElementById("catname");
+        var catid = document.getElementById("catid");
+        catname.setAttribute('value', catid.options[catid.selectedIndex].text);
+
+    })
 </script>
 <!-- Custom Theme Scripts -->
 <script src="../js/custom.min.js"></script>

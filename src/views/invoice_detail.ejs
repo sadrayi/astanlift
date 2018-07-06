@@ -94,15 +94,15 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <%for(w=0;w<factor.quantity.length;w++){%>
+                                <%for(w=0;w<factor.items.length;w++){%>
                                 <tr>
                                     <td><%=(1+w)%></td>
-                                    <td><%=factor.title[w]%></td>
-                                    <td><%=factor.comment[w]%>
+                                    <td><%=factor.items[w].title%></td>
+                                    <td><%=factor.items[w].comment%>
                                     </td>
-                                    <td class="money"><%=factor.percost[w]%></td>
+                                    <td class="money"><%=factor.items[w].percost%></td>
                                     <td><%=factor.quantity[w]%></td>
-                                    <td class="money"><%=(factor.percost[w]*factor.quantity[w])%></td>
+                                    <td class="money"><%=(factor.items[w].percost*factor.items[w].quantity)%></td>
                                 </tr>
                                 <%}%>
 

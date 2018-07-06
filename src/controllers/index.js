@@ -48,6 +48,7 @@ module.exports = function (app, passport, Account) {
     const chat = require('./chat');
     const error = require('./error');
     const teklogin = require('./api/teknesian/login');
+    const anbar = require('./addanbar');
 
     app.post('/register', function(req, res) {
         Account.register(
@@ -93,6 +94,7 @@ module.exports = function (app, passport, Account) {
     app.get('/map', map.get);
     app.get('/chat', chat.get);
     app.post('/package_add', package_add.post);
+    app.post('/addanbar', anbar.post);
     app.post('/deactivate_matlab', imani_add.deactivate);
     app.post('/activate_matlab', imani_add.activate);
     app.get('/user_list', user.get);

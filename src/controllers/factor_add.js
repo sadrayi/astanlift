@@ -50,7 +50,28 @@ exports.get = async(req, res) => {
 };
 exports.post = async(req, res) => {
 
-    var body = req.body;
+    const body = req.body;
+    const radif = [];
+    if(Array.isArray(body.title))
+    for(r=0;r<body.title.length;r++)
+    {
+        radif[r]={};
+        radif[r].id=r;
+        radif[r].title=body.title[r];
+        radif[r].comment=body.comment[r];
+        radif[r].percost=body.percost[r];
+        radif[r].quantity=body.quantity[r];
+    }
+    else
+    {
+        radif[0]={};
+        radif[0].id=0;
+        radif[0].title=body.title;
+        radif[0].comment=body.comment;
+        radif[0].percost=body.percost;
+        radif[0].quantity=body.quantity;
+    }
+    req.body.items=radif;
     if (req.body.sabtkind === "register") {
         switch(req.body.requestkind){
             case 'درخواست مشاوره و نظرات':
@@ -72,6 +93,8 @@ exports.post = async(req, res) => {
                 redirecturl='asansorsale_list';
                 break;
         }
+
+        body.items=radif;
     var factorSave = new factorModek(
         body
     );

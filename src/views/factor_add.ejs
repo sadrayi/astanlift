@@ -104,7 +104,7 @@
             </div>
             <%}}else {%>
             <% if (typeof fid !== 'undefined'){%>
-            <%for(i=0;i<request.title.length;i++){%>
+            <%for(i=0;i<request.items.length;i++){%>
             <div class="x_title">
                 <h2>ردیف <%=i+1%></h2>
 
@@ -115,7 +115,7 @@
                     <label class="control-label col-md-3 col-sm-3 col-xs-12">موضوع <span class="required">*</span>
                     </label>
                     <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input id="radif[<%=i%>][title]" value="<%=request.title[i]%>" name="title" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text">
+                        <input id="radif[<%=i%>][title]" value="<%=request.items[i].title%>" name="title" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text">
                     </div>
                 </div>
 
@@ -123,7 +123,7 @@
                     <label class="control-label col-md-3 col-sm-3 col-xs-12">قیمت واحد <span class="required">*</span>
                     </label>
                     <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input id="radif[<%=i%>][percost]" value="<%=request.percost[i]%>"  name="percost" class="oneprice date-picker form-control col-md-7 col-xs-12" required="required" type="number">
+                        <input id="radif[<%=i%>][percost]" value="<%=request.items[i].percost%>"  name="percost" class="oneprice date-picker form-control col-md-7 col-xs-12" required="required" type="number">
                     </div>
                 </div>
 
@@ -131,7 +131,7 @@
                     <label class="control-label col-md-3 col-sm-3 col-xs-12">تعداد <span class="required">*</span>
                     </label>
                     <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input id="radif[<%=i%>][quantity]" value="<%=request.quantity[i]%>"  name="quantity" class="quantity date-picker form-control col-md-7 col-xs-12" required="required" type="number">
+                        <input id="radif[<%=i%>][quantity]" value="<%=request.items[i].quantity%>"  name="quantity" class="quantity date-picker form-control col-md-7 col-xs-12" required="required" type="number">
                     </div>
                 </div>
 
@@ -139,11 +139,12 @@
                     <label class="control-label col-md-3 col-sm-3 col-xs-12">توضیحات <span class="required">*</span>
                     </label>
                     <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input  id="radif[<%=i%>][comment]" value="<%=request.comment[i]%>"  name="comment" class="date-picker form-control col-md-7 col-xs-12"  type="text">
+                        <input  id="radif[<%=i%>][comment]" value="<%=request.items[i].comment%>"  name="comment" class="date-picker form-control col-md-7 col-xs-12"  type="text">
                     </div>
                 </div>
                 <div class=""></div>
 
+            </div>
             </div>
             <%}}else {%>
             <div class="x_title">

@@ -1,16 +1,17 @@
 
 
 var mongoose = require('mongoose'),
-autoIncrement = require('mongoose-auto-increment-fix');
+    autoIncrement = require('mongoose-auto-increment-fix');
 
 autoIncrement.initialize(global.db);
 var AddressScheme = new mongoose.Schema({
     phone: {type: String},
+    title: {type: String},
     city: {type: String},
     ostan: {type: String},
     zone: {type: String},
-    address: {type: String},
     address_pic: {type: String},
+    address: {type: String},
     latlng: {type: String},
     created: {type: Date, default: Date.now},
 });

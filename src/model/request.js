@@ -12,6 +12,8 @@ autoIncrement.initialize(global.db);var requestScheme = new mongoose.Schema({
     addressid: {type: String},
     eshterakstatus: {type: String},
     address_pic: {type: String},
+    bazdidstart: {type: Date},
+    bazdidfinish: {type: Date},
     ostan: {type: String},
     zone: {type: String},
     requestdate: {type: Date},
